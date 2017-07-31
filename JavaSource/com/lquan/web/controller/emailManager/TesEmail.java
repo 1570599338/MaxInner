@@ -18,7 +18,9 @@ public class TesEmail {
 	@RequestMapping(value="/test")
 	public void toTestMail(HttpServletRequest request){
 		String to ="quan.liu@maxinsight.cn";
-		emailSender.send(to,null,null, "Forgot Password", "Hello,\r\n\r\n Your new password for .\r\n\r\nThank you!\r\n\r\n 美好的一天从现在开始！)");
+		String cc ="wei.wang.it@maxinsight.cn;shan.zhong@maxinsight.cn";
+		String bcc ="1570599338@qq.com;";
+		emailSender.send(to,cc,bcc, "测试邮件请忽略", "Dear All,\r\n\r\n 这是一封测试邮件，请大家直接忽略 .\r\n\r\nThank you!\r\n\r\n 美好的一天从现在开始！");
 		
 	}
 

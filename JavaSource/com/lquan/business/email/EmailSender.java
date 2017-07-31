@@ -98,17 +98,16 @@ public class EmailSender {
 	 */
 	public void sendSimpleTextEmail(String to,String cc,String bcc, String subject, String content) {
 		
-		if(to != null && "".equals(to.trim())){
-
-		simpleMailMessage.setTo(to); // 发送
-		if(cc != null && "".equals(cc.trim()))
-			simpleMailMessage.setCc("542180670@qq.com"); // 抄送
-		if(bcc != null && "".equals(bcc.trim()))
-			simpleMailMessage.setBcc("1570599338@qq.com"); //  密送
-		simpleMailMessage.setSubject(subject);
-		simpleMailMessage.setText(content);
-
-		mailSender.send(simpleMailMessage);
+		if(to != null && !"".equals(to.trim())){
+			simpleMailMessage.setTo(emailAddressToArray(to)); // 发送
+			if(cc != null && !"".equals(cc.trim()))
+				simpleMailMessage.setCc(emailAddressToArray(cc)); // 抄送
+			if(bcc != null && !"".equals(bcc.trim()))
+				simpleMailMessage.setBcc(emailAddressToArray(bcc)); //  密送
+			simpleMailMessage.setSubject(subject);
+			simpleMailMessage.setText(content);
+	
+			mailSender.send(simpleMailMessage);
 		}else
 			log.info("EmailSender 发送邮件出错……没有发送人");
 	}
@@ -120,10 +119,30 @@ public class EmailSender {
 	 * 
 	 * @return
 	 */
-	private String[] emailAddressToArray(String emails){
+	private String[] emailAddressToArray(String emailStr){
+		log.info("邮箱转换前的数据："+ emailStr);
+		int firstPostion = emailStr.indexOf(";");
+		int lastPostion = emailStr.lastIndexOf(";");
+		int strLength = emailStr.length();
+		String[] emailAddress=null;
 		
+		// 去掉头部的“;”
+		if(firstPostion==0 && strLength>1){
+			emailStr = emailStr.substring(1, strLength);
+		}
 		
-		return null;
+		// 去掉尾部的";"
+		if(strLength==lastPostion+1 && lastPostion>1){
+			emailStr = emailStr.substring(0, strLength-1);
+			
+		}
+		emailAddress = emailStr.split(";");
+		log.info("*************转换-Start***********");
+		for(int i=0;i<emailAddress.length;i++){
+			log.info(emailAddress[i]);
+		}
+		log.info("**************--End***************");
+		return emailAddress;
 	}
 	
 	
