@@ -331,4 +331,28 @@ public class ActivtiyController {
 	}	
 	
 	
+	/**
+	 * 查询上传文件的模型
+	 * @param request
+	 * @throws Exception 
+	 * @returngetuploadModelList
+	 */
+	@RequestMapping(value ="queryFileModelList")
+	public void  queryFileModelList(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		String path = WebUtils.getModuleProperty("upload.actionImg");
+		String downPath = WebUtils.getModuleProperty("down.actionImg");
+		String fileAllName = MyFileUtil.oneFileUpload(request, path);
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("data", "../"+downPath+""+fileAllName);
+		JSONArray json=JSONArray.fromObject(map);
+		String resultStr = json.toString().substring(1,json.toString().length()-1);
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();			
+		out.write(resultStr);			
+		out.flush();			
+		out.close();
+		
+		
+	}
+	
 }
