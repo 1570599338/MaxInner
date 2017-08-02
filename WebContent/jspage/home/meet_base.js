@@ -101,9 +101,9 @@ function getDate(dateTime){
 			}
 			
 			var tbody="";
-			for(var i=9;i<=18;i++){
+			for(var i=9;i<18;i++){
 				tbody = tbody + "<tr class='"+(i%2==1?"comment_odd":"comment_even")+"'>";// <tr class="xx">
-					tbody = tbody + "<td height='40'>" +i+ "</td>";								//<td> xx </td>
+				tbody = tbody + "<td height='40'> <center> <font color='#2e8764' > " +(i<10? "0"+i:i)+":00 </font> <br/>|<br/> <font color='#0F1719' >"+(i+1)+ ":00 </font> </center> </td>";							//<td> xx </td>
 					for(var m=0;m<meet.length;m++){//**********************************
 						if(meetInfo&&meetInfo.length>0){
 							var flage =0;
@@ -172,6 +172,7 @@ function getDate(dateTime){
 				tbody = tbody + "</tr>";
 			}
 			$("#dateTime").html(data.dateTime);
+			$("#weekday").html(data.weekday);
 			// 清空之前的数据
 			$("#tbody").empty();
 			// 插入到前台

@@ -102,7 +102,7 @@
 					  	<table width="640px" border="0" >
 					  		<tr class="comment_odd" height="25">
 					  			<td><div align="left" style="font-weight:900;" ><a href="javascript:void(0);"  onclick="previousDay()" ><font color="#000">&nbsp;&nbsp;&lt;&lt; 前一天&nbsp;&nbsp;</font></a> </div></td>
-					  			<td><div align="center" ><span id="dateTime"></span></div></td>
+					  			<td><div align="center" ><span id="dateTime"></span>&nbsp;&nbsp;<span id="weekday">111</span></div></td>
 					  			<td><div align="right"  style="font-weight:900;" > <a href="javascript:void(0);"   onclick="nextDay()" > <font color="#000">&nbsp;&nbsp;后一天 &gt;&gt;&nbsp;&nbsp; </font></a> </div></td>
 					  		</tr>
 					  		<tr></tr>

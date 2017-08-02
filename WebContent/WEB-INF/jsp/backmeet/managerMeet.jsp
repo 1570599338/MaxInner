@@ -46,9 +46,9 @@
     </style>
 </head>
 <body >
-	<div id="tb" style="padding: 10px 5px 5px 200px; height: auto;">
-		<div>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<div id="tb" style="padding: 10px 5px 5px 10px; height: auto;text-align:center">
+		<!-- <div style="padding-left:40px"> -->
+		<div style="margin-bottom: 5px;margin-top: 5px;">
 			日期 ：<input class="easyui-datebox" style="width: 150px" id="searchData" name="searchData">&nbsp;&nbsp;&nbsp; 
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<!-- 内&nbsp;&nbsp;&nbsp; 容：<input class="input_text" type="text" style="width: 180px" id="user_name" name="user_name" />&nbsp;&nbsp;&nbsp; -->
@@ -74,7 +74,7 @@
 			  	<table width="770px" border="0" >
 			  		<tr class="comment_odd" height="25">
 			  			<td><div align="left" style="color:#0081c2;font-weight:900;" onclick="previousDay()">&nbsp;&nbsp; &lt;&lt; 前一天 </div></td>
-			  			<td><div align="center" ><span id="dateTime"></span></div></td>
+			  			<td><div align="center" ><span id="dateTime"></span>&nbsp;&nbsp;<span id="weekday"></span></div></td>
 			  			<td><div align="right"  style="color:#0081c2;font-weight:900;" onclick="nextDay()"> 后一天 &gt;&gt;&nbsp;&nbsp;</div></td>
 			  		</tr>
 			  		<tr></tr>

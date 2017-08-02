@@ -193,14 +193,22 @@ public class MeetController {
 		response.setContentType("text/json; charset=UTF-8"); // 注意设置为json
 		response.setCharacterEncoding("UTF-8");// 传送中文时防止乱码
 		String dateTime = FormUtil.getStringFiledValue(request, "dateTimex");
+		String weekday ="";
 		//String companyId = FormUtil.getStringFiledValue(request, "companyId");
+		SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
 		if(dateTime==null ||"".equals(dateTime.trim())){
-			SimpleDateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
 			Date date=new Date();
 			dateTime = dateFormater.format(date);
+			
+			SimpleDateFormat dateFm = new SimpleDateFormat("EEEE");
+			weekday = dateFm.format(date);// 转化成星期几
+		}else{
+			  Date date = dateFormater.parse(dateTime);
+			  weekday = getWeek(date);
 		}
 		Map<String, Object> result  = this.meetServer.getbookMeet(null, null, dateTime,null);
 		result.put("dateTime", dateTime);
+		result.put("weekday", weekday);
 		
 		//json形式返回以树形表格展示
 		JSONArray json=JSONArray.fromObject(result);
@@ -441,5 +449,11 @@ public class MeetController {
 			
 	    return null;
 	}
+	
+    public static String getWeek(Date date) {  
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE");  
+        String week = sdf.format(date);  
+        return week;  
+    }
 }
 	
