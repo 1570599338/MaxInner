@@ -206,5 +206,5 @@ create table t_use(
 );
 
 
-
+alter table dbo.notice add fileName varchar(100);
 

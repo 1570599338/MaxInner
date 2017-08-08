@@ -20,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import snt.common.dao.base.PaginationSupport;
+import snt.common.web.util.WebUtils;
 
 import com.google.gson.Gson;
 import com.lquan.business.noticeManager.INoticeManageService;
+import com.lquan.util.MyFileUtil;
 import com.lquan.web.util.FormUtil;
 
 /**
@@ -144,13 +146,16 @@ public class NoticeController {
 	 * 添加公告信息
 	 * @param request
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping(value="addAdNotice")
-	public ModelAndView addAd(HttpServletRequest request,HttpServletResponse response, RedirectAttributes redirectAttributes){
+	public ModelAndView addAd(HttpServletRequest request,HttpServletResponse response, RedirectAttributes redirectAttributes) throws Exception{
 		// 标题
 		String title = FormUtil.getStringFiledValue(request, "add_title");
 		// 公告标题
 		String message = FormUtil.getStringFiledValue(request, "add_message");
+		String path = WebUtils.getModuleProperty("upload.noticeDir");
+		String fileAllName = MyFileUtil.oneFileUploadName(request, path);
 		Boolean p;
 		try {
 

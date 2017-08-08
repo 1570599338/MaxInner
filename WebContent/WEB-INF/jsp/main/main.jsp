@@ -62,7 +62,7 @@ a:active {
 	margin: 15px 0px 0px 5px;
 	white-space:nowrap;
 	display: inline-block;
-	color:#00AAC2;font-size:22px;font-weight:bold;text-decoration:none
+	color:#ffffff;font-size:22px;font-weight:bold;text-decoration:none
 }
 .cs-west {
 	width:200px;padding:0px;
@@ -310,7 +310,10 @@ function exit(){
 <body class="easyui-layout">
 	<div region="north" border="true" class="cs-north">
 		<div class="cs-north-bg">
-			<div class="cs-north-logo"><a href="http://www.maxinsight.cn"><img style="width:164px ;height:50px;position:absolute;padding:5px;left:108px;top:25px; " src="${ctxPath}/img/front/images/logo.png"/></a><!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卓思内部信息系统 -->
+			<div class="cs-north-logo">
+			<a href="http://www.maxinsight.cn" style=" text-decoration:none; color:#0f1719">
+				 <img style="width:164px ;height:50px;position:absolute;padding:5px;left:108px;top:25px; " src="${ctxPath}/img/front/images/logo.png"/>
+			</a><!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卓思内部信息系统 -->
 		</div>
 			<div style="position:absolute;padding:5px;right:10px;top:60px;font-weight:bold;text-decoration:none;">
 				<a href="#" class="easyui-linkbutton" data-options="plain:true"><font style="color:white;"><!-- 首页 --></font></a>

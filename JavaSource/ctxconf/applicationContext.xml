@@ -153,23 +153,38 @@
     #                           定时任务调度                                                                                       #
     #########################################################################
     -->
-<!--     <bean id="quartzTimerTask" class="snt.das.util.quartz.QuartzTimerTaskImpl">
+    <!--  <bean id="quartzTimerTask" class="snt.das.util.quartz.QuartzTimerTaskImpl">
     	<property name="commonDao" ref="commonDAO" />
     </bean>
+     -->
+  
+  
+    
+   <!--触发器的bean的设置，在这里我们设置了我们要触发的jobDetail是哪个。这里我们定义了要触发的jobDetail是searchEngerneTask，即触发器去触发哪个bean..并且我们还定义了触发的时间   
+    <bean id="cronTrigger"  
+        class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail">  
+            <ref bean="doJob" />  
+        </property>  
+        <property name="cronExpression">   --> 
+            <!-- 关键在配置此表达式，时间设置这里表示每天在下午2：00至2：59之间每1分钟触发一次 ，最后也写出了一些，具体可以自己去找资料看   
+            <value>* * 2 * * ?</value>  
+        </property>  
+    </bean> -->
     
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" id="scheduler">
 	<property name="triggers">
 		<list>
-			去掉定时任务 
+			<!-- 去掉定时任务  -->
 			
-			<ref bean="cronTrigger"/>
+		<!-- 	<ref bean="cronTrigger"/>
 			<ref bean="batchUploadCronTrigger"/>
 		     
-		     <ref bean="statisticTrigger"/>
+		     <ref bean="statisticTrigger"/> -->
 		</list>
 	</property>
 	</bean>
-	 -->
+	 
 	<!-- 这部分是验证码生成的配置
     <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
             <property name="config">  

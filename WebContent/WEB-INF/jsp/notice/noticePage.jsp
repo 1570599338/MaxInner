@@ -78,7 +78,7 @@
 	</div>
 	<!--数据显示 --END -->
 	<!--添加用户-->
-	<div id="addDialog" class="easyui-dialog" title="增加公告" data-options="closed: true,modal:true" style="width: 760px; height: 600px; padding-left: 20px; padding-top: 20px; text-align: center">
+	<div id="addDialog" class="easyui-dialog" title="增加公告" data-options="closed: true,modal:true" style="width: 800px; height: 550px; padding-left: 20px; padding-top: 20px; text-align: center">
 		<form id="addForm" name="addForm" action="" method="post" target="_self">
 			<input type="hidden" name="pk_id" id="id" />
 			<input type="hidden" name="add_message" id="add_message" />
@@ -97,15 +97,25 @@
 				</tr> 
 				<tr>
 					<td style="text-align: right" nowrap="nowrap">内容：</td>
-					<td><textarea name="message" id="message"  style="width:630px;height:300px;visibility:hidden;"></textarea></td>
+					<td><textarea name="message" id="message"  style="width:600px;height:280px;visibility:hidden;"></textarea></td>
 				
 				</tr>
 				 <tr>
 					<td colspan="2">&nbsp;</td>
 				</tr>
+				<tr style="">
+					<td >上传附件：</td>
+					<td >
+						<input type="file" id="file_path" name="file_path" value="abc" size="75" /> 
+						 <input type="hidden" id="filePath" name="filePath" />
+					</td>					
+					
+				</tr> 
+				
 				<tr>
 					<td colspan="2">&nbsp;</td>
-				</tr> 
+				</tr>
+				
 				<tr>
 					<td colspan="2" style="padding-left:230px;">
 						<a href="#" class="easyui-linkbutton" plain="false" onclick="submitDialog('${ctxPath}');">确&nbsp;&nbsp;定&nbsp;&nbsp;</a>
