@@ -95,6 +95,6 @@
 	</div>
 </body>
 
-<script type="text/javascript" src="${ctxPath}/jspage/manageInfo/manageInfo.js"></script>
+<script type="text/javascript" src="${ctxPath}/jspage/manageInfo/manageInfo.js?new date()"></script>
 
 </html>

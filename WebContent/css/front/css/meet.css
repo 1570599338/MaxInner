@@ -32,9 +32,12 @@ div.wrapper{
 	display:block;
 	width:100%;
 	margin:0;
-	text-align:left;
+	text-align:center;
 	}
-
+	div.wrapper p,#tb{
+		text-align:left;
+	}
+	
 div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{
 	margin:0 0 15px 0;
 	padding:0;
@@ -244,15 +247,6 @@ ul#topnav li.last{margin-right:0;}
 #comments .commentlist{margin:0; padding:0;}
 
 #comments .commentlist ul{margin:0; padding:0; list-style:none;}
-.comment_odd ,.comment_even{
-	/* width:32%;	
-	margin:0 12px 10px 0;
-	min-height:160px;
-	background-color:#333333;
-	float:left;
-	display:block; */
-	box-shadow:0 0 14px #00AAC2;
-}
 
 #comments .commentlist li.comment_odd, #comments .commentlist li.comment_even{margin:0 0 10px 0; padding:1px; list-style:none;}
 
@@ -282,11 +276,6 @@ ul#topnav li.last{margin-right:0;}
 	padding:0;	
 	font-size:22px;
 	}
-col5 #container{
-	font-family:"微软雅黑",Georgia, "Times New Roman", Times, serif;
-}	
-	
-	
 #column{
 	display:block;
 	float:left;
@@ -375,7 +364,7 @@ col5 #container{
 }
 .download .download_detail p a{
 	color:#ccc;
-	font-size:13px;
+	font-size:15px;
 }
 .download .download_detail p a span{
 	font-size:12px;
@@ -395,7 +384,7 @@ col5 #container{
 }
 .download .download_detail li a{
 	color:#999;
-	font-size:10px;
+	font-size:14px;
 }
 .download .download_detail li a:hover{
 	color:#00AAC2;

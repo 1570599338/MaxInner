@@ -56,8 +56,10 @@ public class StaffServiceImpl implements IStaffService {
 		if(null!=condition.get("isforbid")&&!"".equals(condition.get("isforbid"))){
 			sb.append("AND s.stat like '%").append(condition.get("isforbid")).append("%'");
 		}
-
 		
+		if(null!=condition.get("username")&&!"".equals(condition.get("username"))){
+			sb.append("AND s.useName like '%").append(condition.get("username")).append("%'");
+		}
 		
 		
 		String orderBy = " order by " + sort + " " + order;

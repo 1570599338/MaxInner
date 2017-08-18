@@ -85,16 +85,17 @@
 					       <thead>
 					       	  <tr bgcolor="#0081c2">
 					       	  	<td>名称</td>
-					       	  	<td colspan="3">一层</td>
+					       	  	<td colspan="4">一层</td>
 					       	  	<td colspan="2">二层</td>
 					       	  </tr>
 						      <tr bgcolor="#0081c2">
 						        <td height="40" width="29">时间</td>
-						        <td width="142">火星</td>
-						        <td width="142">天王星</td>
-						        <td width="142">海王星</td>
-						        <td width="142">金星</td>
-						        <td width="142">水星</td>
+						        <td width="120">火星</td>
+						        <td width="120">天王星</td>
+						        <td width="120">海王星</td>
+						        <td width="120">冥王星</td>
+						        <td width="120">金星</td>
+						        <td width="120">水星</td>
 						       </tr>
 					       </thead>
 					       
@@ -121,6 +122,7 @@
                                     <option value="1">火星</option>
                                     <option value="2">天王星</option>
                                     <option value="3">海王星</option>
+                                    <option value="4">冥王星</option>
                                     <option value="5">金星</option>
                                     <option value="6">水星</option>
                                     
@@ -246,6 +248,7 @@
                                     <option value="1">火星</option>
                                     <option value="2">天王星</option>
                                     <option value="3">海王星</option>
+                                    <option value="4">冥王星</option>
                                     <option value="5">金星</option>
                                     <option value="6">水星</option>
                        </select>&nbsp;&nbsp;&nbsp; 
@@ -283,6 +286,7 @@
                                     <option value="1">火星</option>
                                     <option value="2">天王星</option>
                                     <option value="3">海王星</option>
+                                    <option value="4">冥王星</option>
                                     <option value="5">金星</option>
                                     <option value="6">水星</option>
                        </select>&nbsp;&nbsp;&nbsp; 
@@ -318,6 +322,7 @@
                                     <option value="1">火星</option>
                                     <option value="2">天王星</option>
                                     <option value="3">海王星</option>
+                                    <option value="4">冥王星</option>
                                     <option value="5">金星</option>
                                     <option value="6">水星</option>
                                     
@@ -335,50 +340,50 @@
 					<td>
 						<select class="easyui-combobox"  panelHeight="auto" style="width: 180px" id="downstartTime" name="downstartTime" >
                                     <option value="">请选择..</option>
-                                    <option value="9">09:00</option>
-                                    <option value="9.5">09:30</option>
-                                    <option value="10">10:00</option>
-                                    <option value="10.5">10:30</option>
-                                    <option value="11">11:00</option>
-                                    <option value="11.5">11:30</option>
-                                    <option value="12">12:00</option>
-                                    <option value="12.5">12:30</option>
-                                    <option value="13">13:00</option>
-                                    <option value="13.5">13:30</option>
-                                    <option value="14">14:00</option>
-                                    <option value="14.5">14:30</option>
-                                    <option value="15">15:00</option>
-                                    <option value="15.5">15:30</option>
-                                    <option value="16">16:00</option>
-                                    <option value="16.5">16:30</option>
-                                    <option value="17">17:00</option>
-                                    <option value="17.5">17:30</option>
-                                    <option value="18">18:00</option>
+                                    <option value="9">9</option>
+                                    <option value="9.5">9.5</option>
+                                    <option value="10">10</option>
+                                    <option value="10.5">10.5</option>
+                                    <option value="11">11</option>
+                                    <option value="11.5">11.5</option>
+                                    <option value="12">12</option>
+                                    <option value="12.5">12.5</option>
+                                    <option value="13">13</option>
+                                    <option value="13.5">13.5</option>
+                                    <option value="14">14</option>
+                                    <option value="14.5">14.5</option>
+                                    <option value="15">15</option>
+                                    <option value="15.5">15.5</option>
+                                    <option value="16">16</option>
+                                    <option value="16.5">16.5</option>
+                                    <option value="17">17</option>
+                                    <option value="17.5">17.5</option>
+                                    <option value="18">18</option>
                        </select>
 					</td>
 					<td>结束时间</td>
 					<td>
 						<select class="easyui-combobox"  panelHeight="auto" style="width: 180px" id="downendTime" name="downendTime" >
                                     <option value="">请选择..</option>
-                                     <option value="9">09:00</option>
-                                    <option value="9.5">09:30</option>
-                                    <option value="10">10:00</option>
-                                    <option value="10.5">10:30</option>
-                                    <option value="11">11:00</option>
-                                    <option value="11.5">11:30</option>
-                                    <option value="12">12:00</option>
-                                    <option value="12.5">12:30</option>
-                                    <option value="13">13:00</option>
-                                    <option value="13.5">13:30</option>
-                                    <option value="14">14:00</option>
-                                    <option value="14.5">14:30</option>
-                                    <option value="15">15:00</option>
-                                    <option value="15.5">15:30</option>
-                                    <option value="16">16:00</option>
-                                    <option value="16.5">16:30</option>
-                                    <option value="17">17:00</option>
-                                    <option value="17.5">17:30</option>
-                                    <option value="18">18:00</option>
+                                    <option value="9">9</option>
+                                    <option value="9.5">9.5</option>
+                                    <option value="10">10</option>
+                                    <option value="10.5">10.5</option>
+                                    <option value="11">11</option>
+                                    <option value="11.5">11.5</option>
+                                    <option value="12">12</option>
+                                    <option value="12.5">12.5</option>
+                                    <option value="13">13</option>
+                                    <option value="13.5">13.5</option>
+                                    <option value="14">14</option>
+                                    <option value="14.5">14.5</option>
+                                    <option value="15">15</option>
+                                    <option value="15.5">15.5</option>
+                                    <option value="16">16</option>
+                                    <option value="16.5">16.5</option>
+                                    <option value="17">17</option>
+                                    <option value="17.5">17.5</option>
+                                    <option value="18">18</option>
                        </select>
 					</td>
 				</tr>

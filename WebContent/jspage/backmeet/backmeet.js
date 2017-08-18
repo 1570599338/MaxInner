@@ -161,7 +161,7 @@ function getDate(dateTime){
 			var tbody="";
 			for(var i=9;i<18;i++){
 				tbody = tbody + "<tr class='"+(i%2==1?"comment_odd":"comment_even")+"'>";// <tr class="xx">
-					tbody = tbody + "<td height='40'> <center> <font color='#0081c2' > " +(i<10? "0"+i:i)+":00 </font> <br/><font color='#76c307' >|</font>  </td>";								//<td> xx </td>
+					tbody = tbody + "<td height='40'> <center> <font color='#0081c2' > " +(i<10? "0"+i:i)+":00 </font> <br/><font color='#76c307' >|</font> <font color='#0F1719' >"+(i+1)+ ":00 </font> </center> </td>";								//<td> xx </td>
 					for(var m=0;m<meet.length;m++){//**********************************
 						if(meetInfo&&meetInfo.length>0){
 							var flage =0;

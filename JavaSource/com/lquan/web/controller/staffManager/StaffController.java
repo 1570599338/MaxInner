@@ -87,12 +87,15 @@ public class StaffController {
 			String title = request.getParameter("fileName") == null ? "" : request.getParameter("fileName").toString();
 			String company = request.getParameter("log_name") == null ? "" : request.getParameter("log_name").toString();
 			String depart = request.getParameter("user_name") == null ? "" : request.getParameter("user_name").toString();
+			// 员工姓名
+			String username = request.getParameter("username") == null ? "" : request.getParameter("username").toString();
 			String isforbid = request.getParameter("isforbid") == null ? "" : request.getParameter("isforbid").toString();
 			Map<String,String> condition = new HashMap<String, String>();
 			condition.put("sort", sort);
 			condition.put("order", order);
 			condition.put("company", company);
 			condition.put("depart", depart);
+			condition.put("username", username);
 			condition.put("isforbid", isforbid);
 			
 			PaginationSupport ps = this.staffService.getStaffPage(page, rows,sort,order,title,condition);

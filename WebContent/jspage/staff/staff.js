@@ -37,6 +37,8 @@ function getdata(){
 	var ctxPath = $("#ctxPath").val();
 	var log_name = $("#log_name").val();
 	var user_name = $("#user_name").val();
+	// 员工姓名
+	var username = $("#username").val();
 	//标志位防止因为在查询过程中翻页对查询结果的影响
 	var isforbid = $("#isforbid").combobox('getValue');
 	 // 通过路径查询项目的数据列表
@@ -55,6 +57,7 @@ function getdata(){
 				queryParams:{
 					log_name:log_name,
 					user_name:user_name,
+					username:username,
 					isforbid:isforbid
 				},
 				columns : [ [ {
@@ -65,19 +68,23 @@ function getdata(){
 				}, {
 					field : 'department',
 					title : '部门名称',
-					width : 100,				
+					width : 100,
+					sortable : true
 				}, {
 					field : 'useName',
 					title : '姓名',
 					width : 80,
+					sortable : true
 				}, {
 					field : 'state',
 					title : '状态',
 					width : 80,
+					sortable : true
 				},{
 					field : 'gender',
 					title : '性别',
 					width : 50,
+					sortable : true
 				},{
 					field : 'celphone',
 					title : '手机号码',

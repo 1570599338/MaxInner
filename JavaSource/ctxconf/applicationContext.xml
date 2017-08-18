@@ -24,6 +24,7 @@
 				<value>WEB-INF/props/jdbc.properties</value>
 				<value>WEB-INF/props/mail.properties</value>
 				<value>WEB-INF/props/misc.properties</value>
+				<value>WEB-INF/props/ad.properties</value>
 			</list>
 		</property>
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_FALLBACK" />
@@ -94,6 +95,14 @@
 	<!-- Transaction Manager -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 设置AD域问题 -->
+	<bean id="lDAPDAO" class="com.lquan.ad.base.ldap.LDAPDAO">
+		<property name="host" value="${ldap.host}" />
+		<property name="domain" value="${ldap.domain}" />
+		<property name="port" value="${ldap.port}" />
+		
 	</bean>
 
 	<!-- Mail Sender start -->

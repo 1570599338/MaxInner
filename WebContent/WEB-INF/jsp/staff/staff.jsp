@@ -38,6 +38,7 @@
 						<option value="1">在职</option>
 						<option value="0">离职</option>
 					</select>&nbsp;&nbsp;&nbsp; 
+			员工姓名：<input class="input_text" type="text" style="width: 80px" id="username" name="username" />&nbsp;&nbsp;&nbsp;
 			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="getdata()">&nbsp;&nbsp;搜&nbsp;&nbsp;索&nbsp;&nbsp;</a>
 		</div>
 

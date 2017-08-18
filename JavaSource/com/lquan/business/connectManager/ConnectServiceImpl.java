@@ -52,6 +52,8 @@ public class ConnectServiceImpl implements IConnectService {
 			sql.append(" AND s.telphone = '").append(telPhone).append("'");
 		}
 		
+		sql.append(" order by s.sort asc;");// 显示排序
+		
 		List<Map<String, Object>> list = commonDao.queryForMapList(sql.toString());
 		return list;
 	}

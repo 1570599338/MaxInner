@@ -7,7 +7,7 @@
 <title>活动展示</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@include file="/WEB-INF/jsp/inc/inc.jsp"%>
-<link rel="stylesheet" href="${ctxPath}/css/front/css/meet.css" type="text/css" />
+<link rel="stylesheet" href="${ctxPath}/css/front/css/layout.css" type="text/css" />
 <link rel="stylesheet" href="${ctxPath}/css/front/css/detail.css" type="text/css"/>
 <link rel="stylesheet" href="${ctxPath}/css/front/css/detail-p.css" type="text/css"/>
  <script type="text/javascript" src="${ctxPath }/jspage/home/meet_base.js"></script>
@@ -91,7 +91,7 @@
 					日期 ：<input class="easyui-datebox" style="width: 150px" id="searchData" name="searchData">&nbsp;&nbsp;&nbsp; 
 					&nbsp;&nbsp;&nbsp;
 					<!-- 内&nbsp;&nbsp;&nbsp; 容：<input class="input_text" type="text" style="width: 180px" id="user_name" name="user_name" />&nbsp;&nbsp;&nbsp; -->
-					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="searchData()">&nbsp;查&nbsp;询&nbsp;</a>
+					<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="searchData()">&nbsp;搜&nbsp;索&nbsp;</a>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 			</div>         
@@ -113,16 +113,17 @@
 								       <thead>
 								       	  <tr bgcolor="#0f1719">
 								       	  	<td>名称</td>
-								       	  	<td colspan="3">一层</td>
+								       	  	<td colspan="4">一层</td>
 								       	  	<td colspan="2">二层</td>
 								       	  </tr>
 									      <tr bgcolor="#0f1719">
 									        <td height="35" width="29">时间</td>
-									        <td width="120">火星</td>
-									        <td width="120">天王星</td>
-									        <td width="120">海王星</td>
-									        <td width="120">金星</td>
-									        <td width="120">水星</td>
+									        <td width="100">火星</td>
+									        <td width="100">天王星</td>
+									        <td width="100">海王星</td>
+									        <td width="100">冥王星</td>
+									        <td width="100">金星</td>
+									        <td width="100">水星</td>
 									       </tr>
 								       </thead>
 								       
@@ -143,7 +144,7 @@
                 <div class="fy_bottom"><span>下一篇：</span><a href="#">IT制度</a></div> -->
             </div>
       	</div>
-     <%--  <div class="classify">
+      <div class="classify">
             <div class="cf_title">
                 <h3>相关分类</h3>
             </div>
@@ -158,7 +159,7 @@
                     
                 </ul>
             </div>
-      </div> --%>
+      </div>
     </div>    
 </div>
 <!-- ###########################################################链接结束############################################ -->

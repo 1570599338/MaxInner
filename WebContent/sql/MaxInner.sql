@@ -207,4 +207,4 @@ create table t_use(
 
 
 alter table dbo.notice add fileName varchar(100);
-
+alter table staffInfo add sort int default 1000; -- 员工表增加一个排序列

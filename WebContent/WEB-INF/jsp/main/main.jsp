@@ -62,7 +62,7 @@ a:active {
 	margin: 15px 0px 0px 5px;
 	white-space:nowrap;
 	display: inline-block;
-	color:#ffffff;font-size:22px;font-weight:bold;text-decoration:none
+	color:#00AAC2;font-size:22px;font-weight:bold;text-decoration:none
 }
 .cs-west {
 	width:200px;padding:0px;
@@ -312,8 +312,7 @@ function exit(){
 		<div class="cs-north-bg">
 			<div class="cs-north-logo">
 			<a href="http://www.maxinsight.cn" style=" text-decoration:none; color:#0f1719">
-				 <img style="width:164px ;height:50px;position:absolute;padding:5px;left:108px;top:25px; " src="${ctxPath}/img/front/images/logo.png"/>
-			</a><!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卓思内部信息系统 -->
+			<img style="width:164px ;height:50px;position:absolute;padding:5px;left:108px;top:25px; " src="${ctxPath}/img/front/images/logo.png"/></a><!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卓思内部信息系统 -->
 		</div>
 			<div style="position:absolute;padding:5px;right:10px;top:60px;font-weight:bold;text-decoration:none;">
 				<a href="#" class="easyui-linkbutton" data-options="plain:true"><font style="color:white;"><!-- 首页 --></font></a>
@@ -370,7 +369,7 @@ function exit(){
 				<div title="首页" iconCls="icon-project">
 				   <a href="javascript:void(0);" src="${ctxPath}/active/toPage" class="cs-navi-tab">活动展示</a></p>
 					<a href="javascript:void(0);" src="${ctxPath}/notice/toPage" class="cs-navi-tab">公告发布</a></p>
-					 <a href="javascript:void(0);" src="${ctxPath}/tour/toPage" class="cs-navi-tab">活动展示</a></p> 
+					<%-- <a href="javascript:void(0);" src="${ctxPath}/tour/toPage" class="cs-navi-tab">活动展示</a></p> --%>
 					<a href="javascript:void(0);" src="${ctxPath}/rule/toPage" class="cs-navi-tab">规章制度</a></p>
 				</div>
 				<div title="下载专区" iconCls="icon-datasave">
@@ -387,14 +386,22 @@ function exit(){
 				</div>
 				 <div title="经营管理" iconCls="icon-statistic">
 					<a href="javascript:void(0);" src="${ctxPath}/manage/topage" class="cs-navi-tab">经营管理信息</a></p>
-				</div> 
+					<a href="javascript:void(0);" src="${ctxPath}/holiday/topage" class="cs-navi-tab">年假查询</a></p>
+					<a href="javascript:void(0);" src="${ctxPath}/manage/topagex" class="cs-navi-tab">图书模块</a></p>
+				</div>
+				<%-- <div title="年假查询" iconCls="icon-statistic">
+					<a href="javascript:void(0);" src="${ctxPath}/holiday/topage" class="cs-navi-tab">经营管理信息</a></p>
+				</div>  
+				<div title="图书管理" iconCls="icon-statistic">
+					
+				</div> --%> 
 		</div>
 	</div>
 	<div id="mainPanle" region="center" border="true" border="false">
 		 <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
                 <div title="首页" iconCls="icon-home">
 				<div class="cs-home-remark">
-					<h1>UI Demo</h1> <br/> <br/>
+					<h1>UI Demo</h1> <br/><br/>
 					作者：刘劝 <br/> <br/>
 					版本：v1.0 <br/> <br/>
 					

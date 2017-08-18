@@ -1,9 +1,12 @@
 package com.lquan.web.controller.userManager;
 
 import javax.annotation.Resource;
+import javax.naming.directory.DirContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lquan.ad.base.ldap.LDAPDAO;
 import com.lquan.business.login.ILoginService;
 import com.lquan.common.Constants;
 import com.lquan.entity.User;
 import com.lquan.util.Utils;
+import com.lquan.web.controller.uploadFileManager.UploadController;
 
 /**
  * 登陆操作
@@ -27,9 +32,13 @@ import com.lquan.util.Utils;
 @Controller
 @RequestMapping(value="user")
 public class UserLoginController {
+	Log log = LogFactory.getLog(UserLoginController.class);
 	
 	@Resource(name = "loginService")
-	public ILoginService loginService;
+	private ILoginService loginService;
+	
+	@Resource(name="lDAPDAO")
+	private LDAPDAO lDAPDAO;
 	
 	/**
 	 * 转向登陆界面
@@ -57,8 +66,25 @@ public class UserLoginController {
 		response.setContentType("text/xml; charset=UTF-8");
 		String loginName = request.getParameter("uname");
 		String password = request.getParameter("upass");
+		Boolean loginFlage =false;
+		try {
+			DirContext a = this.lDAPDAO.getDirContext(loginName, password);
+			System.out.println(a);
+			a.close();
+			loginFlage =true;
+		} catch (Exception e) {
+			loginFlage =false;
+			e.printStackTrace();
+			log.error(loginName+"-登录失败", e);
+		}
 		
-		User user = loginService.selectUser(loginName);
+		if(loginFlage){
+			request.getSession().setAttribute(Constants.SESSION_USER,loginName);
+			redirectAttributes.addFlashAttribute("message", "欢迎<font color=blue>"+loginName+"</font>登陆内部信息网！");
+			return new ModelAndView("redirect:/user/main");
+		}
+		
+		/*User user = loginService.selectUser(loginName);
 		// 记录登陆时间、ip、mac地址
 		String ip = Utils.getIpAddr(request);
 		System.out.println("账户："+loginName+ " 密码："+password + "  IP:"+ip);
@@ -77,7 +103,7 @@ public class UserLoginController {
 			
 		}else{
 			redirectAttributes.addFlashAttribute("message", "对不起,无此账户！");
-		}
+		}*/
 		return new ModelAndView("redirect:/user/toLogin");
 	}
 	
