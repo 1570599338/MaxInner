@@ -21,24 +21,38 @@
 		
 		}
 		.comment_odd{
-			background-color:#f2f2f2;
+			background-color:#BEBEBE;
+		}
+		.comment_even{
+			background-color:#BEBEBE;
 		}
 		.mini{
-			background-color:#00AAc2;
+			background-color:#2e8764;
 		}
 		.updown{
 			width:127px;
-			height:44px;
+			height:51px;
 		}
 		.up{
 			width:127px;
-			height:22px;
-			background-color:#00AAc2;
+			height:25px;
+			background-color:#2e8764;
 			}
 		.down{
 			width:127px;
-			height:22px;
+			height:26px;
 			
+		}
+		
+		.tablecolor-bottom{
+			border-collapse:separate;
+			padding:10px;
+			border-bottom :30px solid  #E0E0E0;
+		}
+		.tablecolor-up{
+			border-collapse:separate;
+			padding:20px;
+			border-top :10px solid  #A6A6A7;
 		}
 </style>
 
@@ -111,13 +125,13 @@
 						   <div>
 							    <table class="content"   border="1" bordercolor="#cccccc" style="border-collapse:collapse;">
 								       <thead>
-								       	  <tr bgcolor="#0f1719">
-								       	  	<td>名称</td>
+								       	  <tr bgcolor="#0f1719" rowspan=2>
+								       	  	<td  colspan="2">名称</td>
 								       	  	<td colspan="3">一层</td>
 								       	  	<td colspan="2">二层</td>
 								       	  </tr>
 									      <tr bgcolor="#0f1719">
-									        <td height="35" width="29">时间</td>
+									        <td  colspan="2" height="35" width="29">时间</td>
 									        <td width="120">火星</td>
 									        <td width="120">天王星</td>
 									        <td width="120">海王星</td>

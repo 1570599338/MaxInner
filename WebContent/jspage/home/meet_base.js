@@ -99,12 +99,28 @@ function getDate(dateTime){
 				meet = data.meet;
 				meetInfo = data.meetinfo;
 			}
-			
+			//"+i==9?"rowspan = 3":i==12?"rowspan = 5":""+"
 			var tbody="";
 			for(var i=9;i<18;i++){
-				tbody = tbody + "<tr class='"+(i%2==1?"comment_odd":"comment_even")+"'>";// <tr class="xx">
-				tbody = tbody + "<td height='40'> <center> <font color='#2e8764' > " +(i<10? "0"+i:i)+":00 </font> <br/>|<br/> <font color='#0F1719' >"+(i+1)+ ":00 </font> </center> </td>";							//<td> xx </td>
-					for(var m=0;m<meet.length;m++){//**********************************
+				//tbody = tbody + "<tr class='"+(i%2==1?"comment_odd":"comment_even")+"'>";// <tr class="xx">
+				if(i==12)
+					tbody = tbody + "<tr class='tablecolor-bottom "+(i<=12?"comment_even":i>12?"comment_odd":"")+"'>";// <tr class="xx">
+				else
+					tbody = tbody + "<tr class='"+(i<=12?"comment_even":i>12?"comment_odd":"")+"'>";// <tr class="xx">
+				
+				
+				/***左侧样式调试--Start****/
+				if(i==9)/*E0E0E0   F3F0E5 */
+					tbody = tbody +"<td height='40' rowspan ='4' bgcolor='#A6A6A7'><font color='#0f1719' ><B>&nbsp;上&nbsp;<br/><br/>&nbsp;午&nbsp;</B></font></td>";
+				else if(i==13)
+						tbody = tbody +"<td height='40' rowspan ='5' bgcolor='#A6A6A7'><font color='#0f1719' ><B>&nbsp;下&nbsp;<br/><br/>&nbsp;午&nbsp;</B></font></td>";
+				
+				if(i<=12)
+					tbody = tbody + "<td height='40' bgcolor='#A6A6A7'> <center> <font color='#2e8764' > " +(i<10? "0"+i:i)+":00 </font> <br/>|<br/> <font color='#0F1719' >"+(i+1)+ ":00 </font> </center> </td>";							//<td> xx </td>
+				if(i>12)
+					tbody = tbody + "<td height='40' bgcolor='#A6A6A7' > <center> <font color='#2e8764' > " +(i<10? "0"+i:i)+":00 </font> <br/>|<br/> <font color='#0F1719' >"+(i+1)+ ":00 </font> </center> </td>";			
+				/****左侧样式调试--End********/
+				for(var m=0;m<meet.length;m++){//**********************************
 						if(meetInfo&&meetInfo.length>0){
 							var flage =0;
 							var count =0;
@@ -142,12 +158,12 @@ function getDate(dateTime){
 										// 开始半小时的节点
 										if(meetInfo[j].startTime-i==0.5){
 											tbody = tbody + "<td  > " ;
-											tbody = tbody + "<div class='updown'><div class='down'></div><div class='up'>"+	"预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div></div>";
+											tbody = tbody + "<div class='updown'><div class='down'></div><div class='up'>"+	"&nbsp;&nbsp;&nbsp;预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div></div>";
 											tbody = tbody +	"</td>";
 											break;
 										}
 										// 完整1个时间的节点
-										tbody = tbody + "<td class='mini' > 预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> <br/> 设&nbsp;&nbsp;&nbsp;备：";
+										tbody = tbody + "<td class='mini' > &nbsp;&nbsp预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> <br/> &nbsp;&nbsp;&nbsp;设&nbsp;&nbsp;&nbsp;备：";
 										if(meetInfo[j].assist==0){
 											tbody = tbody +"无"+"</td>";
 										}else{

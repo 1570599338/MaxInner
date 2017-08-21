@@ -34,15 +34,15 @@
 				width:127px;
 				height:44px;
 			}
-			.up{
-					width:127px;
-					height:22px;
-					background-color:#73C003;
-				}
-			.down{
-				width:127px;
+		.up{
+				width:144px;
 				height:22px;
+				background-color:#73C003;
 			}
+		.down{
+			width:127px;
+			height:22px;
+		}
     </style>
 </head>
 <body >
