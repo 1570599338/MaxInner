@@ -1,6 +1,8 @@
 package com.lquan.web.controller.departmentManager;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -112,16 +114,21 @@ public class Department {
 		
 		String pk_id = request.getParameter("pk_id");
 		try {
+			List<Map<String, Object>> result = new ArrayList<>();
 			if(pk_id != null && !"".equals(pk_id)){
-				List<Map<String, Object>> result = this.departmentService.queryDepartment(pk_id);
-				//返回参数
-				Gson gson = new Gson();
-				String jsonObject = gson.toJson(result);
-				PrintWriter out = response.getWriter();
-				out.print(jsonObject);
-				out.flush();
-				out.close();
+				result = this.departmentService.queryDepartment(pk_id);
 			}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("code", "");
+			map.put("department", "--请选择--");
+			result.add(map);
+			//返回参数
+			Gson gson = new Gson();
+			String jsonObject = gson.toJson(result);
+			PrintWriter out = response.getWriter();
+			out.print(jsonObject);
+			out.flush();
+			out.close();
 		} catch (Exception e) {
                log.error("根据pk_id查询文件类型数据出错",e);			
 		}
@@ -161,7 +168,11 @@ public class Department {
 	public void  queryFileModelList(HttpServletRequest request,HttpServletResponse response){
 		
 		try {
-			List<Map<String, Object>> modellist = this.departmentService.getCompanyList();			
+			List<Map<String, Object>> modellist = this.departmentService.getCompanyList();	
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("pk_id", "");
+			map.put("company", "--请选择--");
+			modellist.add(map);
 			//json形式返回以树形展示
 			JSONArray json=JSONArray.fromObject(modellist);
 			

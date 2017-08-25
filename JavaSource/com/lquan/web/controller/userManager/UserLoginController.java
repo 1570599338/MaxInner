@@ -67,23 +67,24 @@ public class UserLoginController {
 		String loginName = request.getParameter("uname");
 		String password = request.getParameter("upass");
 		Boolean loginFlage =false;
+		User user =null;
 		try {
-			DirContext a = this.lDAPDAO.getDirContext(loginName, password);
-			System.out.println(a);
-			a.close();
+			user = this.lDAPDAO.getDirContext(loginName, password);
+			request.getSession().setAttribute(Constants.SESSION_USER,user);
 			loginFlage =true;
 		} catch (Exception e) {
 			loginFlage =false;
 			e.printStackTrace();
-			log.error(loginName+"-登录失败", e);
+			log.error(loginName+"-登录失败-", e);
 		}
 		
 		if(loginFlage){
-			request.getSession().setAttribute(Constants.SESSION_USER,loginName);
+			
 			redirectAttributes.addFlashAttribute("message", "欢迎<font color=blue>"+loginName+"</font>登陆内部信息网！");
 			return new ModelAndView("redirect:/user/main");
 		}
-		
+		String ip = Utils.getIpAddr(request);
+		System.out.println("*****"+ip+"*******");
 		/*User user = loginService.selectUser(loginName);
 		// 记录登陆时间、ip、mac地址
 		String ip = Utils.getIpAddr(request);

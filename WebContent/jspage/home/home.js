@@ -52,16 +52,63 @@ function downFile(ctxPath,fileID){
 
 // 在浏览器上直接查看pdf格式数据
 function viewPdf(ctxPath,fileID){
-	$("#fileName").val(fileID);
-	$("#fileForm").attr("action",ctxPath + '/home/viewRuleFile');
-	$("#fileForm").submit();
+	$.ajax({
+		url : ctxPath+'/home/getip',
+		data : {"pk_id":fileID},
+		type : 'post',
+		dataType : 'json',
+		success : function(data) {
+			if(data){
+				if(data.city=='BJ'){
+					$("#fileName").val(fileID);
+					$("#fileForm").attr("action",ctxPath + '/home/viewRuleFile');
+					$("#fileForm").submit();
+				}else{
+					sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+					return;
+				}
+			}else{
+				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+				return;
+			}
+		},
+		error : function() {
+			sayInfo("出错了。");
+		}
+	}); 
+	
+	
 }
 
 // 显示隐藏的规章制度的数据
 function getlistRule(ctxPath,type){
-	$("#fileType").val(type);
-	$("#fileForm").attr("action",ctxPath + '/home/toRuleBase');
-	$("#fileForm").submit();
+	
+	$.ajax({
+		url : ctxPath+'/home/getip',
+		data : {"pk_id":"111"},
+		type : 'post',
+		dataType : 'json',
+		success : function(data) {
+			if(data){
+				if(data.city=='BJ'){
+					$("#fileType").val(type);
+					$("#fileForm").attr("action",ctxPath + '/home/toRuleBase');
+					$("#fileForm").submit();
+				}else{
+					sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+					return;
+				}
+			}else{
+				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+				return;
+			}
+		},
+		error : function() {
+			sayInfo("出错了。");
+		}
+	}); 
+	
+
 	
 }
 
@@ -72,20 +119,65 @@ function getlistRuleX(ctxPath,type){
 
 // 下载专区
 function downPage(ctxPath,type,title){
-	$("#typeId").val(type);
-	$("#title").val(title);
-	$("#type").val("2");
-	$("#downfileForm").attr("action",ctxPath + '/home/todownFilePage');
-	$("#downfileForm").submit();
+	$.ajax({
+		url : ctxPath+'/home/getip',
+		data : {"pk_id":"111"},
+		type : 'post',
+		dataType : 'json',
+		success : function(data) {
+			if(data){
+				if(data.city=='BJ'){
+					$("#typeId").val(type);
+					$("#title").val(title);
+					$("#type").val("2");
+					$("#downfileForm").attr("action",ctxPath + '/home/todownFilePage');
+					$("#downfileForm").submit();
+				}else{
+					sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+					return;
+				}
+			}else{
+				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+				return;
+			}
+		},
+		error : function() {
+			sayInfo("出错了。");
+		}
+	}); 
+	
 }
 
 
 function downPageHead(ctxPath,modelId,modeltitle){
-	$("#modelId").val(modelId);
-	$("#modelTitle").val(modeltitle);
-	$("#type").val("1");
-	$("#downfileForm").attr("action",ctxPath + '/home/todownFilePage');
-	$("#downfileForm").submit();
+	
+	$.ajax({
+		url : ctxPath+'/home/getip',
+		data : {"pk_id":"111"},
+		type : 'post',
+		dataType : 'json',
+		success : function(data) {
+			if(data){
+				if(data.city=='BJ'){
+					$("#modelId").val(modelId);
+					$("#modelTitle").val(modeltitle);
+					$("#type").val("1");
+					$("#downfileForm").attr("action",ctxPath + '/home/todownFilePage');
+					$("#downfileForm").submit();
+				}else{
+					sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+					return;
+				}
+			}else{
+				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+				return;
+			}
+		},
+		error : function() {
+			sayInfo("出错了。");
+		}
+	}); 
+	
 }
 
 

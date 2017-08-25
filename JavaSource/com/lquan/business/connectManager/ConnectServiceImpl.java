@@ -32,11 +32,11 @@ public class ConnectServiceImpl implements IConnectService {
 		sql.append(" join  department  d on s.departmentCode=d.Code ");
 		sql.append(" join  company c on c.pk_id=d.companyId  where 1=1 and s.stat=1 ");
 		// 公司
-		if(companyid!=null && !"".equals(companyid)){
+		if(companyid!=null && !"".equals(companyid) && !"--请选择--".equals(companyid)){
 			sql.append(" AND c.pk_id=").append(companyid);
 		}
-		// 部门
-		if(departMentCode!=null && !"".equals(departMentCode)){
+		// 部门--请选择--
+		if(departMentCode!=null && !"".equals(departMentCode) && !"--请选择--".equals(departMentCode)){
 			sql.append(" AND d.Code='").append(departMentCode).append("'");
 		}
 		// 性别

@@ -36,13 +36,13 @@ $(function(){
 	    panelHeight: 'auto',//自动高度适合
 	    valueField:'pk_id',  
 	    textField:'company',
-	    loadFilter:function(data){  
+	   /*  loadFilter:function(data){  
 	       var obj={};  
 	       obj.pk_id='';  
 	       obj.company='-请选择-';  
 	       data.splice(0,0,obj);//在数组0位置插入obj,不删除原来的元素  
 	       return data;  
-	     },
+	     }, */
 	    onSelect: function(record){
 	    		_type_name.combobox({
 		    		editable:true, //不可编辑状态
@@ -51,13 +51,13 @@ $(function(){
 		            url: ctxPath + '/department/queryDepartment?pk_id=' + record.pk_id,
 		            valueField:'code',  
 		    	    textField:'department',
-		    	    loadFilter:function(data){  
+		    	    /* loadFilter:function(data){  
 		    		       var obj={};  
 		    		       obj.code='';  
 		    		       obj.department='-请选择-';  
 		    		       data.splice(0,0,obj);//在数组0位置插入obj,不删除原来的元素  
 		    		       return data;  
-		    		     },
+		    		     }, */
 		        }).combobox('clear');
 			}
 	   }); 
@@ -67,13 +67,13 @@ $(function(){
 	    disabled: false,
 	    valueField:'pk_id',  
 	    textField:'department',
-	    loadFilter:function(data){  
+	   /*  loadFilter:function(data){  
 		       var obj={};  
 		       obj.code='';  
 		       obj.department='-请选择-';  
 		       data.splice(0,0,obj);//在数组0位置插入obj,不删除原来的元素  
 		       return data;  
-		     },
+		     }, */
 	});
 	if('${companyid}'){
 		_type_name.combobox({
@@ -83,17 +83,23 @@ $(function(){
             url: ctxPath + '/department/queryDepartment?pk_id=' + '${companyid}',
             valueField:'code',  
     	    textField:'department',
-    	    loadFilter:function(data){  
+    	   /*  loadFilter:function(data){  
  		       var obj={};  
  		       obj.code='';  
  		       obj.department='-请选择-';  
  		       data.splice(0,0,obj);//在数组0位置插入obj,不删除原来的元素  
  		       return data;  
- 		     },
+ 		     }, */
         }).combobox('clear');
 	}
 	$("#company").combobox('select', '${companyid}');
-	$("#department").combobox('select', '${departMentCode}');
+	//$("#department").combobox('select', '');
+	if('${companyid}'==''){
+		$("#department").combobox('select', "--请选择--");
+	}else{
+		$("#department").combobox('select', '${departMentCode}');
+	}
+	
 	$("#gender").combobox('select', '${gender}');
 	$("#useName").val('${useName}');
 	$("#telphone").val('${telphone}');
@@ -159,10 +165,10 @@ $(function(){
     			
     		</td>
     		<td>&nbsp;&nbsp;&nbsp;</td>
-    		<td>部门:</td><td><input type="text" id="department" name="department" panelHeight="auto" class="easyui-combobox" /></td>
+    		<td>部门:</td><td><input type="text" id="department" name="department" panelHeight="auto" class="easyui-combobox"  value="--请选择--"/></td>
     		<td>&nbsp;&nbsp;&nbsp;</td>
     		<td>性别:</td><td><input type="text" id="gender" name="gender" panelHeight="auto" class="easyui-combobox" data-options="valueField: 'value',textField: 'label',
-    		data: [{label: '请选择',value: '',selected:true},{label: '男',value: '1'},{label: '女',value: '0'}]" /></td>
+    		data: [{label: '--请选择--',value: '',selected:true},{label: '男',value: '1'},{label: '女',value: '0'}]" /></td>
     		<td>&nbsp;&nbsp;&nbsp;</td>
     		<td>姓名:</td><td><input class="input_text" type="text" style="width:116px;height:24px" id="useName" name="useName" /></td>
     		<td>&nbsp;&nbsp;&nbsp;</td>

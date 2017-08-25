@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="${ctxPath}/jspage/rule/rule.js"></script>
+<script type="text/javascript" src="${ctxPath}/jspage/holiday/holiday.js"></script>
 <title>年假管理</title>
 </head>
 <body>
@@ -23,12 +23,12 @@
 				toolbar:'#tb',
 				pageSize:20">
 		<thead>
-			<tr>
+			<!-- <tr>
 				<th field="type" width="50" data-options="sortable:true">类型</th>
 				<th field="fileName" width="80" data-options="sortable:true">文件名</th>
 				<th field="ruleTime" width="80" align="right">时间</th>
 				<th field="createBy" width="50" align="right">上传者</th>
-			</tr>
+			</tr> -->
 		</thead>
 	</table>
 	<div id="tb" style="padding: 10px 5px 5px 10px; height: auto;">
@@ -51,7 +51,7 @@
 	<!--数据显示 --END -->
 	<!--上传图片-->
 	<div id="addDialog" class="easyui-dialog" title="导入年假" data-options="closed: true,modal:true" style="width: 600px; height: 200px; padding-left: 20px; padding-top: 20px; text-align: center">
-	<form id="upfileForm" name="upfileForm" method="post"  enctype="multipart/form-data" action="<%=ctxPath%>/rule/uploadFile">
+	<form id="upfileForm" name="upfileForm" method="post"  enctype="multipart/form-data" action="<%=ctxPath%>/holiday/uploadVacation">
 			<input type="hidden" name="tourId" id="tourId" />
 			<input type="hidden" name="Img_message" id="Img_message" />
 			<table border="0"  style="text-align: left;">
@@ -59,7 +59,7 @@
 					<td style="text-align: right" nowrap="nowrap">&nbsp;&nbsp;&nbsp;月份：</td>
 				
 					<td style="text-align: right" nowrap="nowrap">
-						<select class="easyui-combobox"  panelHeight="auto" style="width: 100px" id="upfileType" name="upfileType" >
+						<select class="easyui-combobox"  panelHeight="auto" style="width: 100px" id="mouth" name="mouth" >
                                     <option value="0">请选择..</option>
                                     <option value="1">1月</option>
                                     <option value="2">2月</option>

@@ -4,9 +4,16 @@ import java.util.Hashtable;
 
 import javax.naming.AuthenticationException;
 import javax.naming.Context;
+import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
+import javax.naming.directory.Attributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
+import javax.naming.directory.SearchControls;
+import javax.naming.directory.SearchResult;
+
+import com.lquan.entity.User;
+import com.lquan.util.LDAPUtil;
 
 
 /**
@@ -42,27 +49,50 @@ public class LDAPDAO {
 	 * @param userName 用户名
 	 * @param password 密码
 	 * @return
+	 * @throws Exception 
 	 */
-	public DirContext getDirContext(String userName,String password){
+	public User getDirContext(String userName,String password) throws Exception{
 		String url = new String("ldap://" + host + ":" + port);
 		String user = userName.indexOf(domain) > 0 ? userName : userName + domain;
         env.put(Context.SECURITY_PRINCIPAL, user); //用户名
         env.put(Context.SECURITY_CREDENTIALS, password);//密码
         env.put(Context.PROVIDER_URL, url);//Url
+        User userBean = new User();
+      /*  try {*/
+        ctx = new InitialDirContext(env);// 初始化上下文
+        System.out.println("身份验证成功!");
+        SearchControls searchCtls = new SearchControls();  
+        searchCtls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+        // 设置过滤
+        String searchFilter = "(&(objectClass=user)(name="+userName+"))";
+        String searchBase = "DC=MI,DC=local";
+        String[] returnedAtts = { "description","name","mail","employeeID","userpassword"};
+        searchCtls.setReturningAttributes(returnedAtts);  
+        NamingEnumeration<SearchResult> answer = ctx.search(searchBase, searchFilter,searchCtls); 
+        while (answer.hasMoreElements()) {  
+            SearchResult sr = (SearchResult) answer.next();
+            // 获取属性
+            String mail = LDAPUtil.getUser(sr, "mail");// 电子邮件
+            String name = LDAPUtil.getUser(sr, "description"); // 姓名
+            String loginName = LDAPUtil.getUser(sr, "name");// 登录名称
+            userBean.setEmail(mail);
+            userBean.setUser_name(name);
+            userBean.setLog_name(loginName);
+        }
         
-        try {
-            ctx = new InitialDirContext(env);// 初始化上下文
-        } catch (AuthenticationException e) {
+        
+        ctx.close();
+        /*} catch (AuthenticationException e) {
             System.out.println("身份验证失败!");
             e.printStackTrace();
         } catch (javax.naming.CommunicationException e) {
         	 System.out.println("AD域连接失败!");
              e.printStackTrace();
-         } catch (Exception e) {
-             System.out.println("身份验证未知异常!");
+        }  catch (Exception e) {
+             //System.out.println("身份验证未知异常!");
              e.printStackTrace();
-         }
-		return ctx;
+         }*/
+		return userBean;
 	}
 
 	

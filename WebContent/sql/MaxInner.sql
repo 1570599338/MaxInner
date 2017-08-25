@@ -208,3 +208,15 @@ create table t_use(
 
 alter table dbo.notice add fileName varchar(100);
 alter table staffInfo add sort int default 1000; -- 员工表增加一个排序列
+
+
+
+create table vacation(
+	pk_id bigint primary key,       -- 主键
+	userName varchar(200) not null,	-- 姓名
+	baseDay varchar(200) ,			--之前累计天数
+	spendDay varchar(200),			--当月请假天数
+	restDay varchar(200), 			--剩余天数
+	createdAt date,					--创建时间
+	createdBy varchar(200)			--创建人
+)

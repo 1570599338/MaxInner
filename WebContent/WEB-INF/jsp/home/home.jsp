@@ -264,10 +264,10 @@ function DrawImage(ImgD,w,h){
     	<p >下载专区</p>
     	<c:forEach items="${uploadList }" var="tache" >
 	    	<div class="download_detail">
-	        	<p><a href="#" onclick="downPageHead('${ctxPath}','${tache.pk_id}','${tache.title}')">${tache.title}<span>..More</span></a></p>
+	        	<p><a href="javascript:onclick=downPageHead('${ctxPath}','${tache.pk_id}','${tache.title}')" >${tache.title}<span>..More</span></a></p>
 	            <ul>
 	             <c:forEach items="${tache.typeList }" var="list" varStatus="ss">
-	            	<li><a href="#" onclick="downPage('${ctxPath}','${list.pk_id}','${list.title}')">${list.title }</a></li>
+	            	<li><a href="javascript:onclick=downPage('${ctxPath}','${list.pk_id}','${list.title}')">${list.title }</a></li>
 	             </c:forEach>
 	            </ul>
 	        </div> 

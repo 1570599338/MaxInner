@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.util.MapFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import snt.common.dao.base.PaginationSupport;
 import snt.common.web.util.WebUtils;
@@ -30,6 +33,7 @@ import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
 import com.lquan.business.homeManager.IHomeMangeService;
 import com.lquan.business.uploadFileManager.IUploadFileService;
 import com.lquan.util.MyFileUtil;
+import com.lquan.util.Utils;
 import com.lquan.web.util.FormUtil;
 
 /**
@@ -304,4 +308,34 @@ public class HomeController {
 		 return "home/downFile_base";
 	}
 	
+	
+	/**
+	 * 获取根据访问的IP来判断是哪一个公司的
+	 * @param request
+	 * @param response
+	 * @param redirect
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/getip")
+	public void getIP(HttpServletRequest request,HttpServletResponse response,RedirectAttributes  redirect) throws Exception{
+		response.setContentType("text/json; charset=UTF-8"); // 注意设置为json
+		response.setCharacterEncoding("UTF-8");// 传送中文时防止乱码
+		String ip = Utils.getIpAddr(request);
+		String[] ipPart = ip.split("\\.");
+		String[] ipPartx = ip.split("./");
+		String city ="";
+		if(ipPart[2].equals("10"))
+			city="BJ";
+		Map<String, Object> result  = new HashMap<>();
+		result.put("city", city);
+		
+		//json形式返回以树形表格展示
+		JSONArray json=JSONArray.fromObject(result);
+		PrintWriter out = response.getWriter();	
+		//拼接的json数据多出一对“【】”，所以先去掉
+		String resultStr = json.toString().substring(1,json.toString().length()-1);
+		out.write(resultStr.toString());			
+		out.flush();			
+		out.close();
+	}
 }

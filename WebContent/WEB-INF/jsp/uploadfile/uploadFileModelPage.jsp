@@ -101,7 +101,7 @@
 					 <input  id="model_name_type" name="model_name_type"  class="easyui-combobox"  data-options="required:true"  />
 				</td>
 				<td style="text-align: right" nowrap="nowrap">分类：</td>
-				<td><input type="text" id="model_type" name="model_type" class="easyui-validatebox" data-options="required:true,validType:'length[1,8]'" /></td>
+				<td><input type="text" id="model_type" name="model_type" class="easyui-validatebox" data-options="required:true,validType:'length[1,99]'" /></td>
 			 </tr>
 			 <tr><td  colspan="5" style="padding-left: 130px;">
 				   <a href="#" class="easyui-linkbutton"  plain="false" onclick="submitTypeDialog('${ctxPath}');">&nbsp;&nbsp;确&nbsp;&nbsp;定&nbsp;&nbsp;</a>
