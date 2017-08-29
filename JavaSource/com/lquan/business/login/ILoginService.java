@@ -14,6 +14,13 @@ import com.lquan.entity.User;
  */
 public interface ILoginService {
 	/**
+	 * 查找用户信息
+	 * @param userName
+	 * @return
+	 * @throws Exception
+	 */
+	public User getUser(User user) throws Exception;
+	/**
 	 * 通过登录名查询用户
 	 * @param loginName
 	 */

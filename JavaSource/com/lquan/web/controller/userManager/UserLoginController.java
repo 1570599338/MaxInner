@@ -1,7 +1,6 @@
 package com.lquan.web.controller.userManager;
 
 import javax.annotation.Resource;
-import javax.naming.directory.DirContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,7 +21,6 @@ import com.lquan.business.login.ILoginService;
 import com.lquan.common.Constants;
 import com.lquan.entity.User;
 import com.lquan.util.Utils;
-import com.lquan.web.controller.uploadFileManager.UploadController;
 
 /**
  * 登陆操作
@@ -70,7 +68,10 @@ public class UserLoginController {
 		User user =null;
 		try {
 			user = this.lDAPDAO.getDirContext(loginName, password);
+			// 获取年假信息
+			user = this.loginService.getUser(user);
 			request.getSession().setAttribute(Constants.SESSION_USER,user);
+			request.setAttribute("user", user);
 			loginFlage =true;
 		} catch (Exception e) {
 			loginFlage =false;

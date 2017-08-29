@@ -48,6 +48,39 @@ public class User implements Serializable {
 	
 	/**系统角色ID*/
 	private String role;
+	
+	/**基础天数**/
+	private int baseDay;
+	/**请假天数**/
+	private int spendDay;
+	/**剩余假期天数**/
+	private int restDay;
+
+	
+	
+	public int getBaseDay() {
+		return baseDay;
+	}
+
+	public void setBaseDay(int baseDay) {
+		this.baseDay = baseDay;
+	}
+
+	public int getSpendDay() {
+		return spendDay;
+	}
+
+	public void setSpendDay(int spendDay) {
+		this.spendDay = spendDay;
+	}
+
+	public int getRestDay() {
+		return restDay;
+	}
+
+	public void setRestDay(int restDay) {
+		this.restDay = restDay;
+	}
 
 	public long getPk_id() {
 		return pk_id;

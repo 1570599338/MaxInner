@@ -1,12 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" %> 
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" import="com.lquan.entity.*,com.lquan.common.Constants" %> 
 <meta http-equiv="X-UA-Compatible" content="IE=10;IE=9;IE=8;IE=7;" />
 <%@include file="/WEB-INF/jsp/inc/inc.jsp"%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>卓思数据咨询股份有限公司</title>
-
+<%	
+	User user = (User)request.getSession().getAttribute(Constants.SESSION_USER);
+	request.setAttribute("user", user);
+%>
 <style type="text/css">
 body {
 	font: 12px/20px "微软雅黑", "宋体", Arial, sans-serif, Verdana, Tahoma;
@@ -401,6 +404,18 @@ function exit(){
 		 <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
                 <div title="首页" iconCls="icon-home">
 				<div class="cs-home-remark">
+					<br/><br/>
+				 	<h1>年假情况</h1> <br/>
+					用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户：${user.user_name}
+					  <br/><br/>
+					请假天数：${user.spendDay} 天
+					<br/><br/>
+					剩余年假：${user.restDay} 天
+					
+				 <br/><br/> <br/><br/> <br/><br/> <br/><br/>
+				
+				
+				
 					<h1>UI Demo</h1> <br/><br/>
 					作者：刘劝 <br/> <br/>
 					版本：v1.0 <br/> <br/>

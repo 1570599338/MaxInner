@@ -114,5 +114,43 @@ public class LoginServiceImpl implements ILoginService {
 		return count > 0 ? true:false;
 		
 	}
+
+	
+	/**
+	 * 查找用户信息
+	 * @param userName
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public User getUser(User user) throws Exception {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT pk_id,userName,baseDay,spendDay,restDay,createAt from vacation  WHERE 1=1");
+		
+		User u = new User();
+		if(user.getUser_name()!=null && !"".equals(user.getUser_name())){
+			sql.append("AND userName= '").append(user.getUser_name().trim()).append("'");
+			List<Map<String, Object>> list = commonDao.queryForMapList(sql.toString());
+			if(list.size()==1){
+				for (Map<String, Object> map : list) {
+					u.setPk_id(Long.valueOf(String.valueOf(map.get("pk_id"))).longValue());//pk_id
+					u.setLog_name(user.getLog_name());// 登录名
+					u.setUser_name(user.getUser_name());//姓名
+					u.setEmail(user.getEmail()); // 邮箱
+					u.setBaseDay(Integer.valueOf(map.get("baseDay")==null?"0":String.valueOf(map.get("baseDay")))); 
+					u.setSpendDay(Integer.valueOf(map.get("spendDay")==null?"0":String.valueOf(map.get("spendDay"))));
+					u.setRestDay(Integer.valueOf(map.get("restDay")==null?"0":String.valueOf(map.get("restDay"))));
+					
+				}	
+			}
+			
+		}
+			
+		if(u!=null)
+			return u;
+		else
+			return user;
+		
+	}
 	
 }

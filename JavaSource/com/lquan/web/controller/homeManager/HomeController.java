@@ -328,6 +328,7 @@ public class HomeController {
 			city="BJ";
 		Map<String, Object> result  = new HashMap<>();
 		result.put("city", city);
+		log.info("*********IP 地址："+ip + "**************"+city);
 		
 		//json形式返回以树形表格展示
 		JSONArray json=JSONArray.fromObject(result);
