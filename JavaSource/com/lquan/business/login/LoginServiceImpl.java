@@ -137,9 +137,9 @@ public class LoginServiceImpl implements ILoginService {
 					u.setLog_name(user.getLog_name());// 登录名
 					u.setUser_name(user.getUser_name());//姓名
 					u.setEmail(user.getEmail()); // 邮箱
-					u.setBaseDay(Integer.valueOf(map.get("baseDay")==null?"0":String.valueOf(map.get("baseDay")))); 
-					u.setSpendDay(Integer.valueOf(map.get("spendDay")==null?"0":String.valueOf(map.get("spendDay"))));
-					u.setRestDay(Integer.valueOf(map.get("restDay")==null?"0":String.valueOf(map.get("restDay"))));
+					u.setBaseDay(map.get("baseDay")==null?"0":String.valueOf(map.get("baseDay"))); 
+					u.setSpendDay(map.get("spendDay")==null?"0":String.valueOf(map.get("spendDay")));
+					u.setRestDay(map.get("restDay")==null?"0":String.valueOf(map.get("restDay")));
 					
 				}	
 			}

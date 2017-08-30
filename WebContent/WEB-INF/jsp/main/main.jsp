@@ -369,6 +369,9 @@ function exit(){
 					 <a href="javascript:void(0);" src="${ctxPath}/user/toDatagrid" class="cs-navi-tab" iconCls="icon-nav">角色权限</a></p>
 					 <a href="javascript:void(0);" src="${ctxPath}/user/toDatagrid" class="cs-navi-tab" iconCls="icon-nav">操作功能</a></p>
 				</div> --%>
+				<c:choose>
+					<c:when test="${user.log_name=='admin'} }">
+				
 				<div title="首页" iconCls="icon-project">
 				   <a href="javascript:void(0);" src="${ctxPath}/active/toPage" class="cs-navi-tab">活动展示</a></p>
 					<a href="javascript:void(0);" src="${ctxPath}/notice/toPage" class="cs-navi-tab">公告发布</a></p>
@@ -394,13 +397,23 @@ function exit(){
 				</div>
 				<%-- <div title="年假查询" iconCls="icon-statistic">
 					<a href="javascript:void(0);" src="${ctxPath}/holiday/topage" class="cs-navi-tab">经营管理信息</a></p>
-				</div>  
-				<div title="图书管理" iconCls="icon-statistic">
+					</div>  
+					<div title="图书管理" iconCls="icon-statistic">
+						
+					</div> --%>
+					</c:when> 
+					<c:otherwise>  
+						<div title="会议室预定" iconCls="icon-audit">
+							<a href="javascript:void(0);" src="${ctxPath}/meet/topage" class="cs-navi-tab">会议室预定</a></p>
+						</div>
 					
-				</div> --%> 
+   					</c:otherwise>
+					
+				</c:choose>
 		</div>
 	</div>
 	<div id="mainPanle" region="center" border="true" border="false">
+		
 		 <div id="tabs" class="easyui-tabs"  fit="true" border="false" >
                 <div title="首页" iconCls="icon-home">
 				<div class="cs-home-remark">
