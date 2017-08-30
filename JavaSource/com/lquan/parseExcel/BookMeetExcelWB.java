@@ -11,7 +11,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
 import com.lquan.POI.POIException;
-import com.lquan.POI.Workbook;
+import com.lquan.POI.Workbookx;
 import com.lquan.util.WriteExcelUtil;
 
 /**
@@ -19,7 +19,7 @@ import com.lquan.util.WriteExcelUtil;
  * @author liuquan
  *
  */
-public class BookMeetExcelWB extends Workbook {
+public class BookMeetExcelWB extends Workbookx {
 
 	public BookMeetExcelWB(FileInputStream workBookStream, int sheet)
 			throws IOException, POIException {

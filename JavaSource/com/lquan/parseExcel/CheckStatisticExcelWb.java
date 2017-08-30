@@ -11,12 +11,12 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 
 import com.lquan.POI.POIException;
-import com.lquan.POI.Workbook;
+import com.lquan.POI.Workbookx;
 import com.lquan.util.WriteExcelUtil;
 
 
 
-public class CheckStatisticExcelWb extends Workbook {
+public class CheckStatisticExcelWb extends Workbookx {
 
 	public CheckStatisticExcelWb(FileInputStream workBookStream, int sheet)
 			throws IOException, POIException {

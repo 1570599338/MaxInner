@@ -11,6 +11,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.lquan.POI.POIException;
 import com.lquan.POI.Workbook;
+import com.lquan.POI.Workbookx;
 
 
 public final class VacationExcelWeb extends Workbook {
@@ -86,6 +87,13 @@ public final class VacationExcelWeb extends Workbook {
 		sb.append(" (id,useName,baseDay,spendDay,restDay,createBy,createAt,batchNum)");
 		sb.append(" values(?,?,?,?,?,?,getdate(),").append(batchNum).append(")");
 		return sb.toString();
+	}
+
+
+	@Override
+	protected Map<String, Short> validCheck(String type) throws POIException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

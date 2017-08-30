@@ -12,10 +12,10 @@ import org.apache.commons.logging.LogFactory;
 
 
 import com.lquan.POI.POIException;
-import com.lquan.POI.Workbook;
+import com.lquan.POI.Workbookx;
 
 
-public class StaffExcelWb extends Workbook {
+public class StaffExcelWb extends Workbookx {
 	private Log log = LogFactory.getLog(StaffExcelWb.class);
 	public static String[] strArray= {"部门编码","姓名","性别","分机号","手机号","邮箱"};
 	public static String columnsCode="id,departmentCode,useName,gender,telphone,celphone,email,createBy,stat,createAt";
