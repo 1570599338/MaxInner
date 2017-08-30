@@ -50,35 +50,35 @@ public class User implements Serializable {
 	private String role;
 	
 	/**基础天数**/
-	private int baseDay;
+	private String baseDay;
 	/**请假天数**/
-	private int spendDay;
+	private String spendDay;
 	/**剩余假期天数**/
-	private int restDay;
+	private String restDay;
 
 	
 	
-	public int getBaseDay() {
+	public String getBaseDay() {
 		return baseDay;
 	}
 
-	public void setBaseDay(int baseDay) {
+	public void setBaseDay(String baseDay) {
 		this.baseDay = baseDay;
 	}
 
-	public int getSpendDay() {
+	public String getSpendDay() {
 		return spendDay;
 	}
 
-	public void setSpendDay(int spendDay) {
+	public void setSpendDay(String spendDay) {
 		this.spendDay = spendDay;
 	}
 
-	public int getRestDay() {
+	public String getRestDay() {
 		return restDay;
 	}
 
-	public void setRestDay(int restDay) {
+	public void setRestDay(String restDay) {
 		this.restDay = restDay;
 	}
 
