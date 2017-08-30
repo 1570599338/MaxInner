@@ -5,30 +5,24 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import snt.common.rs.MemoryResultSet;
 import snt.common.rs.MemoryResultSetMetaData;
 
 
-public abstract class Workbook {
+public abstract class Workbookx {
 
 	private HSSFWorkbook wookBook;
 	private int sheet;
@@ -36,7 +30,7 @@ public abstract class Workbook {
 	private List<String> colNamesList;
 	private MemoryResultSet resultSet;
 	
-	public Workbook(FileInputStream workBookStream, int sheet) throws IOException, POIException{
+	public Workbookx(FileInputStream workBookStream, int sheet) throws IOException, POIException{
 		POIFSFileSystem saleBook = new POIFSFileSystem(workBookStream);
 		this.wookBook = new HSSFWorkbook(saleBook);
 		if (sheet < 0 || sheet > this.wookBook.getNumberOfSheets()) {
@@ -53,28 +47,6 @@ public abstract class Workbook {
 		this.colNamesList = this.gainColNameList();
 		
 		this.colNamsMap = this.validCheck();
-		if (this.colNamsMap == null) {
-			this.colNamsMap = this.listToMap(this.colNamesList);
-		}
-	}
-	
-	public Workbook(FileInputStream workBookStream, int sheet,String type) throws IOException, POIException{
-		POIFSFileSystem saleBook = new POIFSFileSystem(workBookStream);
-		this.wookBook = new HSSFWorkbook(saleBook);
-		if (sheet < 0 || sheet > this.wookBook.getNumberOfSheets()) {
-			throw new POIException("Out of the number of sheets!");
-		}else {
-			if (this.wookBook.getNumberOfSheets() == 1) {
-				this.sheet = 0;
-			} else {
-				this.sheet = sheet;
-			}
-		}
-		
-		//初始化各成员变量
-		this.colNamesList = this.gainColNameList();
-		
-		this.colNamsMap = this.validCheck(type);
 		if (this.colNamsMap == null) {
 			this.colNamsMap = this.listToMap(this.colNamesList);
 		}
@@ -127,103 +99,6 @@ public abstract class Workbook {
 			return ls;
 		}
 	}
-	
-	/**
-	 * 将从Excel中读取得到的结果集转换成一个列表，列表中的每个元素为一个Map，对应原结果集的每条记录。
-	 * Excel表中的第一行的单元格中的字符串对应Map中的key，Excel表中的其余各行的值对应Map中的value。
-	 * @return
-	 * @throws POIException 
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public List<Map> gainDateForMapList1(int constantNum) throws POIException {
-		List ls = new ArrayList<Map>();
-		if (this.getWookBook().getSheetAt(this.sheet) == null) {
-			return ls;
-		}else {
-			Map row;
-			HSSFSheet sheet = this.getWookBook().getSheetAt(this.sheet);
-			List<String> iter = this.gainColNameList1(constantNum);
-			for (int i = 2; sheet.getRow(i) != null ; i++) {
-				row = new LinkedHashMap<String, Object>();
-				int isNull = 0;
-				for(int j = 0; j < iter.size(); j++) {
-					HSSFCell cell = sheet.getRow(i).getCell(j);
-					if (cell == null) {
-						row.put(iter.get(j), null);
-						isNull++;
-						continue;
-					}
-					Object val = this.format(cell);
-					if (val.equals("#BLANK")) {
-						isNull++;
-						val = null;
-					} else if (val.equals("#ERROR")) {
-						isNull++;
-						val = null;
-					}
-					row.put(iter.get(j), val);
-				}
-				if (isNull > 5) {
-					isNull--;
-					isNull++;
-				}
-				if (isNull < iter.size()) {
-					ls.add(row);
-				}
-			}
-			return ls;
-		}
-	}
-	
-	/**
-	 * 将从Excel中读取得到的结果集转换成一个列表，列表中的每个元素为一个Map，对应原结果集的每条记录。
-	 * Excel表中的第一行的单元格中的字符串对应Map中的key，Excel表中的其余各行的值对应Map中的value。
-	 * @return
-	 * @throws POIException 
-	 * @throws Exception
-	 */
-	@SuppressWarnings("unchecked")
-	public List<List> gainDateForList() throws POIException {
-		List ls = new ArrayList<List>();
-		if (this.getWookBook().getSheetAt(this.sheet) == null) {
-			return ls;
-		}else {
-			List row;
-			HSSFSheet sheet = this.getWookBook().getSheetAt(this.sheet);
-			List<String> iter = this.gainColNameList();
-			for (int i = 1; sheet.getRow(i) != null ; i++) {
-				row = new ArrayList();
-				int isNull = 0;
-				for(int j = 0; j < iter.size(); j++) {
-					HSSFCell cell = sheet.getRow(i).getCell(j);
-					if (cell == null) {
-						row.add(null);
-						isNull++;
-						continue;
-					}
-					Object val = this.format(cell);
-					if (val.equals("#BLANK")) {
-						isNull++;
-						val = null;
-					} else if (val.equals("#ERROR")) {
-						isNull++;
-						val = null;
-					}
-					row.add(val);
-				}
-				if (isNull > 5) {
-					isNull--;
-					isNull++;
-				}
-				if (isNull < iter.size()) {
-					ls.add(row);
-				}
-			}
-			return ls;
-		}
-	}
-	
 
 	/**
 	 * 将从Excel中读取得到的结果集转换成一个内存结果集。
@@ -337,30 +212,7 @@ public abstract class Workbook {
 			HSSFSheet sheet = this.getWookBook().getSheetAt(this.sheet);
 				for (int j = 0; sheet.getRow(0).getCell(j) != null; j++) {
 				HSSFCell cell = sheet.getRow(0).getCell(j);
-				ls.add( String.valueOf(this.format(cell)) );
-			}
-			return ls;
-		}
-	}
-	
-	/**
-	 * 得到sheet中第一行的值，存在List中
-	 * @return
-	 * @throws POIException
-	 */
-	private List<String> gainColNameList1(int constantNum) throws POIException{
- 		List<String> ls = new ArrayList<String>();
-		if (this.getWookBook().getSheetAt(this.sheet) == null||this.getWookBook().getSheetAt(this.sheet).getRow(0)==null) {
-			return ls;
-		}else {
-			HSSFSheet sheet = this.getWookBook().getSheetAt(this.sheet);
-				for(int k=0;k<constantNum;k++){
-					HSSFCell cell = sheet.getRow(0).getCell(k);
-					ls.add( String.valueOf(this.format(cell)) );
-				}
-				for (int j = constantNum; sheet.getRow(1).getCell(j) != null; j++) {
-				HSSFCell cell = sheet.getRow(1).getCell(j);
-				ls.add( String.valueOf(this.format(cell)) );
+				ls.add( String.valueOf(this.format(cell)).toUpperCase() );
 			}
 			return ls;
 		}
@@ -385,49 +237,16 @@ public abstract class Workbook {
 		case HSSFCell.CELL_TYPE_NUMERIC:
 			// POI是根据 MS Excel 的默认单元格类型来判断其是不是 Date ，但是，自定义类型并不存在于 MS Excel 的默认类型当中，
 			//所以，即使自定义类型与日期型格式完全一样，POI也不认为其是 Date 类型。
-			/*if (this.checkStyle(cell)) {
+			if (this.checkStyle(cell)) {
 				DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //dd-MMM-yyyy
 				return sdf.format(cell.getDateCellValue());
 			} else {
 				try{
-					return cell.getNumericCellValue(); 
+					return (long) cell.getNumericCellValue(); 
 				}catch (Exception e) {
 				}
 				return cell.getNumericCellValue(); //系统没有小数点之类的导入，转换成int
-			}*/
-			String result="";
-			if (HSSFDateUtil.isCellDateFormatted(cell)) {// 处理日期格式、时间格式
-				SimpleDateFormat sdf = null;
-				if (cell.getCellStyle().getDataFormat() == HSSFDataFormat
-						.getBuiltinFormat("h:mm")) {
-					sdf = new SimpleDateFormat("HH:mm");
-				} else {// 日期
-					sdf = new SimpleDateFormat("yyyy-MM-dd");
-				}
-				Date date = cell.getDateCellValue();
-				result = sdf.format(date);
-			} else if (cell.getCellStyle().getDataFormat() == 58) {
-				// 处理自定义日期格式：m月d日(通过判断单元格的格式id解决，id的值是58)
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				double value = cell.getNumericCellValue();
-				Date date = org.apache.poi.ss.usermodel.DateUtil
-						.getJavaDate(value);
-				result = sdf.format(date);
-			} else {
-				double value = cell.getNumericCellValue();
-				CellStyle style = cell.getCellStyle();
-				DecimalFormat format = new DecimalFormat();
-				String temp = style.getDataFormatString();
-				// 单元格设置成常规
-				if (temp.equals("General")) {
-					format.applyPattern("#");
-				}
-				if (temp.equals("0.00%")) {
-					format.applyPattern("0.0000");
-				}
-				result = format.format(value);
 			}
-			return result.trim();
 		case HSSFCell.CELL_TYPE_STRING:
 			return cell.getStringCellValue().trim();
 		default:
@@ -478,11 +297,6 @@ public abstract class Workbook {
 	 * @return
 	 */
 	protected abstract Map<String, Short> validCheck() throws POIException;
-	/**
-	 * 数据有效性检查，取得有效字段
-	 * @return
-	 */
-	protected abstract Map<String, Short> validCheck(String type) throws POIException;
 
 	public HSSFWorkbook getWookBook() {
 		return wookBook;
