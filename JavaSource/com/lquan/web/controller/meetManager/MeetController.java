@@ -31,6 +31,7 @@ import com.lquan.business.meetManager.IMeetServer;
 import com.lquan.business.userManager.IUserService;
 import com.lquan.parseExcel.BookMeetExcelWB;
 import com.lquan.util.MyFileUtil;
+import com.lquan.util.Utils;
 import com.lquan.web.util.FormUtil;
 
 /**
@@ -51,7 +52,15 @@ public class MeetController {
 	@RequestMapping(value="topage")
 	public String toPage(HttpServletRequest request){
 		
-		return "backmeet/managerMeet";
+		String ip = Utils.getIpAddr(request);
+		String[] ipPart = ip.split("\\.");
+		String type ="";
+		if(ipPart[2].equals("20"))// 广州
+			return "backmeet/managerMeetGZ";
+		else if(ipPart[2].equals("21")) //上海
+			return "backmeet/managerMeetSH";
+		else
+			return "backmeet/managerMeet";
 	}
 	
 	/**
@@ -62,7 +71,17 @@ public class MeetController {
 	@RequestMapping(value="toHomepage")
 	public String toHomepage(HttpServletRequest request){
 		
-		return "home/meet_base";
+		String ip = Utils.getIpAddr(request);
+		String[] ipPart = ip.split("\\.");
+		String type ="";
+		if(ipPart[2].equals("20"))// 广州
+			return "home/meet_baseGZ";
+		else if(ipPart[2].equals("21")) //上海
+			return "home/meet_baseSH";
+		else
+			return "home/meet_base";
+		
+		
 	}	
 	
 	/**
@@ -86,6 +105,16 @@ public class MeetController {
 		String booker = FormUtil.getStringFiledValue(request, "booker");
 		String remark = FormUtil.getStringFiledValue(request, "remark");
 		
+		String ip = Utils.getIpAddr(request);
+		String[] ipPart = ip.split("\\.");
+		String type ="";
+		if(ipPart[2].equals("20"))// 广州
+			type="3";
+		else if(ipPart[2].equals("21")) //上海
+			type="2";
+		else
+			type="1";
+		
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("1", "0");
 		map.put("2", "0");
@@ -108,6 +137,7 @@ public class MeetController {
 		cont.put("assist", bookassistx);
 		cont.put("booker", booker);
 		cont.put("remark", remark);
+		cont.put("type", type);
 		
 		Boolean p;
 		try {
@@ -144,6 +174,16 @@ public class MeetController {
 		String booker = FormUtil.getStringFiledValue(request, "booker");
 		String remark = FormUtil.getStringFiledValue(request, "remark");
 		
+		String ip = Utils.getIpAddr(request);
+		String[] ipPart = ip.split("\\.");
+		String type ="";
+		if(ipPart[2].equals("20"))// 广州
+			type="3";
+		else if(ipPart[2].equals("21")) //上海
+			type="2";
+		else
+			type="1";
+		
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("1", "0");
 		map.put("2", "0");
@@ -165,6 +205,8 @@ public class MeetController {
 		cont.put("assist", bookassistx);
 		cont.put("booker", booker);
 		cont.put("remark", remark);
+		// type
+		cont.put("type", type);
 		
 		Boolean p;
 		try {
@@ -206,7 +248,17 @@ public class MeetController {
 			  Date date = dateFormater.parse(dateTime);
 			  weekday = getWeek(date);
 		}
-		Map<String, Object> result  = this.meetServer.getbookMeet(null, null, dateTime,null);
+		String ip = Utils.getIpAddr(request);
+		String[] ipPart = ip.split("\\.");
+		String type ="";
+		if(ipPart[2].equals("20"))// 广州
+			type="3";
+		else if(ipPart[2].equals("21")) //上海
+			type="2";
+		else
+			type="1";
+		
+		Map<String, Object> result  = this.meetServer.getbookMeet(null, null, dateTime,type);
 		result.put("dateTime", dateTime);
 		result.put("weekday", weekday);
 		

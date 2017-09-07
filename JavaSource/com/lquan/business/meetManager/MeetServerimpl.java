@@ -25,11 +25,11 @@ public class MeetServerimpl implements IMeetServer {
 	public boolean bookMeet(String user, Map<String,Object> cont) {
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append("insert into dbo.bookmeet(pk_id,meetId,bookDate,startTime,endTime,assist,booker,remark,createAt,createBy) values(?,?,?,?,?,?,?,?,getdate(),?) ");
+		sql.append("insert into dbo.bookmeet(pk_id,meetId,bookDate,startTime,endTime,assist,booker,remark,createAt,createBy,type) values(?,?,?,?,?,?,?,?,getdate(),?,?) ");
 		//添加主键
 		long pk_id = PrimaryKeyGenerator.getLongKey();
 		int head = commonDao.update(sql.toString(),  new Object[] { pk_id,cont.get("meetId"),cont.get("bookDate"),
-			cont.get("startTime"),cont.get("endTime"),cont.get("assist"),cont.get("booker"),cont.get("remark"),user});
+			cont.get("startTime"),cont.get("endTime"),cont.get("assist"),cont.get("booker"),cont.get("remark"),user,cont.get("type")});
 		if( head>0)
 			return true ;
 		else
@@ -64,7 +64,7 @@ public class MeetServerimpl implements IMeetServer {
 	@Override
 	public Map<String, Object> getbookMeet(Integer startTime,Integer endTime,String dateTime,String companyId) throws Exception {
 		List<Map<String, Object>> getMeet = getMeet(companyId);
-		List<Map<String, Object>> getMeetInfo = getbookMeetInfo(dateTime);
+		List<Map<String, Object>> getMeetInfo = getbookMeetInfo(dateTime,companyId);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("meet", getMeet);
 		map.put("meetinfo", getMeetInfo);
@@ -78,15 +78,21 @@ public class MeetServerimpl implements IMeetServer {
 	public List<Map<String, Object>> getMeet(String companyId){
 		StringBuffer sql = new StringBuffer();
 		sql.append(" select pk_id,name from meet where 1=1  ");
+		if(companyId!=null && !"".equals(companyId)){
+			sql.append(" And type='").append(companyId).append("'");
+		}
 		List<Map<String, Object>> list = commonDao.queryForMapList(sql.toString());
 		return list;
 	}
 	
-	public List<Map<String, Object>> getbookMeetInfo(String dateTime) throws Exception {
+	public List<Map<String, Object>> getbookMeetInfo(String dateTime,String companyId) throws Exception {
 		StringBuffer sql = new StringBuffer();
 		//sql.append(" select pk_id,meetId,bookDate,startTime,endTime,assist,booker,remark,createAt,createBy from bookmeet where 1=1  ");
 		//sql.append(" select pk_id,meetId,bookDate,startTime,endTime,REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(assist,',0,',','),',0',''),'0,',','),',,',','),'1','三方'),'2','电话'),'3','投影仪') assist,booker,remark,createAt,createBy from bookmeet where 1=1  ");
 		sql.append(" select pk_id,meetId,bookDate,startTime,endTime,REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(assist,',0,0',''),'0,0,',''),',0,',','),'0,',''),',0',''),'1','三方'),'2','电话'),'3','投影仪') assist,booker,remark,createAt,createBy from bookmeet where 1=1  ");
+		if(companyId!=null && !"".equals(companyId)){
+			sql.append(" And type='").append(companyId).append("'");
+		}
 		if(dateTime!=null){
 			sql.append(" And bookDate='").append(dateTime).append("'");
 		}
