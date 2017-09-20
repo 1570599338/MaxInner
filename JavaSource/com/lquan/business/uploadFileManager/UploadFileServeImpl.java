@@ -57,10 +57,10 @@ public class UploadFileServeImpl implements IUploadFileService {
 	 * 显示上传模板类型
 	 */
 	@Override
-	public List<Map<String, Object>>  getuploadList()throws Exception {
+	public List<Map<String, Object>>  getuploadList(String table_uploadFileModel,String table_uploadFileType)throws Exception {
 		
-		List<Map<String, Object>> modelList = getuploadModelList();
-		List<Map<String, Object>> typeList = getuploadTypeList();
+		List<Map<String, Object>> modelList = getuploadModelList(table_uploadFileModel);
+		List<Map<String, Object>> typeList = getuploadTypeListType(table_uploadFileType);
 		for (Map<String, Object> modelMap:modelList) {
 			List<Map<String, Object>> tempList = new ArrayList<Map<String, Object>>();
 			for (Map<String, Object> typeMap:typeList) {
@@ -79,9 +79,9 @@ public class UploadFileServeImpl implements IUploadFileService {
 	 * @return
 	 */
 	@Override
-	public List<Map<String, Object>>  getuploadModelList(){
+	public List<Map<String, Object>>  getuploadModelList(String uploadFileModel){
 		StringBuffer sql = new StringBuffer();
-		sql.append("select pk_id,title from dbo.uploadFileModel");
+		sql.append("select pk_id,title from ").append(uploadFileModel);
 		List<Map<String, Object>> list = commonDao.queryForMapList(sql.toString());
 		return list;
 	}
@@ -90,9 +90,10 @@ public class UploadFileServeImpl implements IUploadFileService {
 	 * 上传模板类型的文件类型查询
 	 * @return
 	 */
-	private List<Map<String, Object>>  getuploadTypeList(){
+	private List<Map<String, Object>>  getuploadTypeListType(String table_uploadFileType){
 		StringBuffer sql = new StringBuffer();
-		sql.append("select pk_id,uploadFileModelID,title,createAt from dbo.uploadFileType ");
+		sql.append("select pk_id,uploadFileModelID,title,createAt from ");
+		sql.append(table_uploadFileType);
 		List<Map<String, Object>> list = commonDao.queryForMapList(sql.toString());
 		return list;
 	}

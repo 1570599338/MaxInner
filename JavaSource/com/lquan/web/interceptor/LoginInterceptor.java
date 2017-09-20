@@ -21,7 +21,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		//return true;
+		return true;
+		/**
 		//return true;///
 		System.out.println(request.getServletPath().toString());
 		//接口的放行
@@ -76,5 +77,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			e.printStackTrace();
 		}			
 		return false;
+		**/
 	}
 }

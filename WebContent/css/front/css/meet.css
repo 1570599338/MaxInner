@@ -19,7 +19,7 @@ img{margin:0; padding:0; border:none;}
 html[xmlns] .clear{display:block;}
 * html .clear{height:1%;}
 a{outline:none; text-decoration:none;}
-.fl_left{float:left;}
+.fl_left{float:center;}
 .fl_right{float:right;}
 .imgl, .imgr{border:1px solid #444444; padding:4px;}
 .imgl{float:left; margin:15px; clear:left;}
@@ -34,8 +34,11 @@ div.wrapper{
 	margin:0;
 	text-align:center;
 	}
-	div.wrapper p,#tb{
+	#tb{
 		text-align:left;
+	}
+	div.wrapper p{
+		text-align:center;
 	}
 	
 div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, div.wrapper h6{

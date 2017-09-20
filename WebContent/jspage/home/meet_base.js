@@ -138,7 +138,7 @@ function getDate(dateTime){
 												if(meetInfo[n].meetId==meet[m].pk_id){
 													if(i+1-meetInfo[n].startTime==0.5){
 														tbody = tbody + "<td > " ;
-														tbody = tbody + "<div class='updown'><div class='up'>"+	"&nbsp;预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='up'>"+	"预定人：<font color='#FFFFFF'>"+meetInfo[j+1].booker+"</font> "+"</div></div>";
+														tbody = tbody + "<div class='updown'><div class='up'>"+	"&nbsp;<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='up'>"+	"<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j+1].booker+"</font> "+"</div></div>";
 														tbody = tbody +	"</td>";
 														endflag=1;
 														//m++;
@@ -148,7 +148,7 @@ function getDate(dateTime){
 											}
 											if(endflag==0){
 												tbody = tbody + "<td > " ;
-												tbody = tbody + "<div class='updown'><div class='up'>"+	"预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='down'></div></div>";
+												tbody = tbody + "<div class='updown'><div class='up'>"+	"<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='down'></div></div>";
 												tbody = tbody +	"</td>";
 												break;	
 											}else{
@@ -158,12 +158,12 @@ function getDate(dateTime){
 										// 开始半小时的节点
 										if(meetInfo[j].startTime-i==0.5){
 											tbody = tbody + "<td  > " ;
-											tbody = tbody + "<div class='updown'><div class='down'></div><div class='up'>"+	"&nbsp;&nbsp;&nbsp;预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div></div>";
+											tbody = tbody + "<div class='updown'><div class='down'></div><div class='up'>"+	"&nbsp;&nbsp;&nbsp;<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div></div>";
 											tbody = tbody +	"</td>";
 											break;
 										}
 										// 完整1个时间的节点
-										tbody = tbody + "<td class='mini' > &nbsp;&nbsp预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> <br/> &nbsp;&nbsp;&nbsp;设&nbsp;&nbsp;&nbsp;备：";
+										tbody = tbody + "<td class='mini' > &nbsp;&nbsp<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> <br/> &nbsp;&nbsp;<B>设&nbsp;&nbsp;&nbsp;备：</B>";
 										if(meetInfo[j].assist==0){
 											tbody = tbody +"无"+"</td>";
 										}else{

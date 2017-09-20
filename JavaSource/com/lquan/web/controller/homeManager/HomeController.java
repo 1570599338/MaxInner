@@ -80,6 +80,18 @@ public class HomeController {
 			active = this.homeMangeService.getHomeActive(activityBasePath,ctxPath);
 					
 			rule =  this.homeMangeService.getHomeruler(basePath,ctxPath);
+			
+			String ip = Utils.getIpAddr(request);
+			String[] ipPart = ip.split("\\.");
+			String city ="";
+			if(ipPart[2].equals("10"))
+				city="BJ";
+			if(ipPart[2].equals("20"))// 广州：20
+				city="GZ";
+			if(ipPart[2].equals("21"))// 上海：21
+				city="SH";
+			
+			
 			list = uploadFileService.getuploadList();
 			
 		} catch (Exception e) {
@@ -322,10 +334,13 @@ public class HomeController {
 		response.setCharacterEncoding("UTF-8");// 传送中文时防止乱码
 		String ip = Utils.getIpAddr(request);
 		String[] ipPart = ip.split("\\.");
-		String[] ipPartx = ip.split("./");
 		String city ="";
 		if(ipPart[2].equals("10"))
 			city="BJ";
+		if(ipPart[2].equals("20"))// 广州：20
+			city="GZ";
+		if(ipPart[2].equals("21"))// 上海：21
+			city="SH";
 		Map<String, Object> result  = new HashMap<>();
 		result.put("city", city);
 		log.info("*********IP 地址："+ip + "**************"+city);

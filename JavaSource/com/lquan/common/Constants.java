@@ -14,4 +14,6 @@ public class Constants {
 	public final static String  SESSION_USER="user";
 	/** 业务异常在Request中的key名 */
 	public static final String ERRORKEY = "SNTERROR";
+	/**session中当前type*/
+	public final static String  SESSION_TYPER="SESSION_TYPER";
 }

@@ -59,16 +59,16 @@ function viewPdf(ctxPath,fileID){
 		dataType : 'json',
 		success : function(data) {
 			if(data){
-				if(data.city=='BJ'){
+				//if(data.city=='BJ'){
 					$("#fileName").val(fileID);
 					$("#fileForm").attr("action",ctxPath + '/home/viewRuleFile');
 					$("#fileForm").submit();
-				}else{
+				/*}else{
 					sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
 					return;
-				}
+				}*/
 			}else{
-				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+				sayInfo("对不起,出错啦！");
 				return;
 			}
 		},
@@ -90,14 +90,14 @@ function getlistRule(ctxPath,type){
 		dataType : 'json',
 		success : function(data) {
 			if(data){
-				if(data.city=='BJ'){
+				//if(data.city=='BJ'){
 					$("#fileType").val(type);
 					$("#fileForm").attr("action",ctxPath + '/home/toRuleBase');
 					$("#fileForm").submit();
-				}else{
+				/*}else{
 					sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
 					return;
-				}
+				}*/
 			}else{
 				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
 				return;
@@ -132,12 +132,22 @@ function downPage(ctxPath,type,title){
 					$("#type").val("2");
 					$("#downfileForm").attr("action",ctxPath + '/home/todownFilePage');
 					$("#downfileForm").submit();
-				}else{
-					sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+				}else if(data.city=='GZ'){
+					sayInfo("file://192.168.20.230/共享/Tools<br> 因流量原因请将上面地址复制到浏览器中打开使用");
 					return;
+				}else if(data.city=='SH'){
+					sayInfo("file://192.168.21.240/Shared_Folders/工具箱<br> 因流量原因请将上面地址复制到浏览器中打开使用");
+					return;
+				}else{
+					sayInfo("北京下载地址：file://192.168.1.240/Shared_Folders/Tools<br> " +
+							"上海下载地址：file://192.168.20.230/共享/Tools<br>" +
+							"广州下载地址：file://192.168.21.240/Shared_Folders/工具箱<br>" +
+							"因流量原因请将上面地址复制到浏览器中打开使用");
+					return;
+					
 				}
 			}else{
-				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
+				sayInfo("对不起，出错了!");
 				return;
 			}
 		},
@@ -165,8 +175,7 @@ function downPageHead(ctxPath,modelId,modeltitle){
 					$("#downfileForm").attr("action",ctxPath + '/home/todownFilePage');
 					$("#downfileForm").submit();
 				}else{
-					sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
-					return;
+					sayInfo("<a href='file://192.168.1.240/Shared_Folders/Tools/'>test</a>");
 				}
 			}else{
 				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");

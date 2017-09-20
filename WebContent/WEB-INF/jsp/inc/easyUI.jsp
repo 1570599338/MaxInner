@@ -34,7 +34,8 @@ function sayInfo(mess){
 	$.messager.show({
 		title:'Tip',
 		msg:mess,
-		height:130,
+		height:160,
+		width:410,
 		showType:'show'
 	});
 }

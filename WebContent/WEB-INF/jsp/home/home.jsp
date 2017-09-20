@@ -7,6 +7,7 @@
 <title>内部信息网</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
+<META NAME="Author" CONTENT="oscar999">
 <%@include file="/WEB-INF/jsp/inc/easyUI.jsp"%>
 <link rel="stylesheet" href="${ctxPath}/css/front/css/layout.css" type="text/css" />
 <script type="text/javascript" src="${ctxPath}/jspage/home/home.js"></script>
@@ -259,6 +260,8 @@ function DrawImage(ImgD,w,h){
   		<input type="hidden" name="typeId" id="typeId" value="">
   		<input type="hidden" name="title" id="title" value="">
   		<input type="hidden" name="type" id="type" value="">
+  	</form>	
+  	   <form id="downfileFormOther" action="file://192.168.1.240/Shared_Folders/Tools" method="post"  target="_blank" >
   	</form>	
     <div id="download" class="download">
     	<p >下载专区</p>

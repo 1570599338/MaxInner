@@ -11,12 +11,12 @@ public interface IUploadFileService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Map<String, Object>>  getuploadList() throws Exception;
+	public List<Map<String, Object>>  getuploadList(String table_uploadFileModel,String table_uploadFileType ) throws Exception;
 	/**
 	 * 上传模板的类型的查询
 	 * @return
 	 */
-	public List<Map<String, Object>>  getuploadModelList();
+	public List<Map<String, Object>>  getuploadModelList(String uploadFileModel);
 	
 	/**
 	 * 获取当前条件下的类型

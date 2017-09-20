@@ -9,6 +9,12 @@
 <%	
 	User user = (User)request.getSession().getAttribute(Constants.SESSION_USER);
 	request.setAttribute("user", user);
+	String type = (String)request.getSession().getAttribute(Constants.SESSION_TYPER);
+	request.setAttribute("type", type);
+	String GZIP="http://127.0.0.1:8081/MaxExtend";
+	request.setAttribute("GZIP", GZIP);
+	String SHIP="http://127.0.0.1:8081/MaxExtend";
+	request.setAttribute("SHIP", SHIP);
 %>
 <style type="text/css">
 body {
@@ -369,8 +375,8 @@ function exit(){
 					 <a href="javascript:void(0);" src="${ctxPath}/user/toDatagrid" class="cs-navi-tab" iconCls="icon-nav">角色权限</a></p>
 					 <a href="javascript:void(0);" src="${ctxPath}/user/toDatagrid" class="cs-navi-tab" iconCls="icon-nav">操作功能</a></p>
 				</div> --%>
-				<c:choose>
-					<c:when test="${user.log_name=='admin'} }">
+			<%-- 	<c:choose>
+					<c:when test="${user.log_name=='admin'} }"> --%>
 				
 				<div title="首页" iconCls="icon-project">
 				   <a href="javascript:void(0);" src="${ctxPath}/active/toPage" class="cs-navi-tab">活动展示</a></p>
@@ -378,10 +384,27 @@ function exit(){
 					<%-- <a href="javascript:void(0);" src="${ctxPath}/tour/toPage" class="cs-navi-tab">活动展示</a></p> --%>
 					<a href="javascript:void(0);" src="${ctxPath}/rule/toPage" class="cs-navi-tab">规章制度</a></p>
 				</div>
-				<div title="下载专区" iconCls="icon-datasave">
-					<a href="javascript:void(0);" src="${ctxPath}/upload/toPage" class="cs-navi-tab">模板类型</a></p>
-					<a href="javascript:void(0);" src="${ctxPath}/upload/uploadFile" class="cs-navi-tab">上传文件</a></p>
-				</div>
+				<c:choose>
+					<c:when test="${type=='SH'}">
+						<div title="下载专区" iconCls="icon-datasave">
+							<a href="javascript:void(0);" src="${ctxPath}/upload/toPage" class="cs-navi-tab">模板类型SH</a></p>
+							<a href="javascript:void(0);" src="${ctxPath}/upload/uploadFile" class="cs-navi-tab">上传文件SH</a></p>
+						</div>
+					</c:when>
+					<c:when test="${type=='GZ'}">
+						<div title="下载专区" iconCls="icon-datasave">
+							<a href="javascript:void(0);" src="${GZIP}/upload/toPage" class="cs-navi-tab">模板类型GZ</a></p>
+							<a href="javascript:void(0);" src="${GZIP}/upload/uploadFile" class="cs-navi-tab">上传文件GZ</a></p>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div title="下载专区" iconCls="icon-datasave">
+							<a href="javascript:void(0);" src="${ctxPath}/upload/toPage" class="cs-navi-tab">模板类型</a></p>
+							<a href="javascript:void(0);" src="${ctxPath}/upload/uploadFile" class="cs-navi-tab">上传文件</a></p>
+						</div>
+					</c:otherwise>	
+				</c:choose>
+				
 			 	<div title="通讯录" iconCls="icon-questionnaire">
 					<a href="javascript:void(0);" src="${ctxPath}/department/toDepartmentPage" class="cs-navi-tab">分公司与部门</a></p>
 					<a href="javascript:void(0);" src="${ctxPath}/staff/toStaffPage" class="cs-navi-tab">员工信息</a></p>
@@ -401,7 +424,7 @@ function exit(){
 					<div title="图书管理" iconCls="icon-statistic">
 						
 					</div> --%>
-					</c:when> 
+					<%-- </c:when> 
 					<c:otherwise>  
 						<div title="会议室预定" iconCls="icon-audit">
 							<a href="javascript:void(0);" src="${ctxPath}/meet/topage" class="cs-navi-tab">会议室预定</a></p>
@@ -409,7 +432,7 @@ function exit(){
 					
    					</c:otherwise>
 					
-				</c:choose>
+				</c:choose> --%>
 		</div>
 	</div>
 	<div id="mainPanle" region="center" border="true" border="false">

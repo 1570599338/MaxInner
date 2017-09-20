@@ -55,7 +55,8 @@ public class UploadController {
 		List<Map<String, Object>>  list = uploadFileService.getuploadList();
 		request.setAttribute("uploadList", list);
 		
-		return "uploadfile/uploadFileModelPage";
+		// return "uploadfile/uploadFileModelPage";
+		return "redirect:http://www.baidu.com/";
 	}
 	
 	/**

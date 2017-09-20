@@ -64,7 +64,7 @@ public class UserLoginController {
 		response.setContentType("text/xml; charset=UTF-8");
 		String loginName = request.getParameter("uname");
 		String password = request.getParameter("upass");
-		Boolean loginFlage =false;
+		/*Boolean loginFlage =false;
 		User user =null;
 		try {
 			user = this.lDAPDAO.getDirContext(loginName, password);
@@ -85,8 +85,8 @@ public class UserLoginController {
 			return new ModelAndView("redirect:/user/main");
 		}
 		String ip = Utils.getIpAddr(request);
-		System.out.println("*****"+ip+"*******");
-		/*User user = loginService.selectUser(loginName);
+		System.out.println("*****"+ip+"*******");*/
+		User user = loginService.selectUser(loginName);
 		// 记录登陆时间、ip、mac地址
 		String ip = Utils.getIpAddr(request);
 		System.out.println("账户："+loginName+ " 密码："+password + "  IP:"+ip);
@@ -105,7 +105,7 @@ public class UserLoginController {
 			
 		}else{
 			redirectAttributes.addFlashAttribute("message", "对不起,无此账户！");
-		}*/
+		}
 		return new ModelAndView("redirect:/user/toLogin");
 	}
 	
@@ -116,6 +116,17 @@ public class UserLoginController {
 	 */
 	@RequestMapping(value="/main")
 	public String toDatagrid(HttpServletRequest request){
+		String ip = Utils.getIpAddr(request);
+		String[] ipPart = ip.split("\\.");
+		String type ="";
+		if(ipPart[2].equals("0"))// 20广州
+			type="GZ";
+		else if(ipPart[2].equals("21")) //上海
+			type="SH";
+		else
+			type="BJ";
+		request.getSession().setAttribute(Constants.SESSION_TYPER,type);
+		
 		
 		return "main/main";
 	}
