@@ -125,7 +125,6 @@
                                     <option value="4">冥王星</option>
                                     <option value="5">金星</option>
                                     <option value="6">水星</option>
-                                    
                        </select>
 					</td>
 					

@@ -59,10 +59,11 @@
 		<!-- <div style="margin-bottom: 5px;margin-top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="false" onclick="addBookMeet()">预定</a>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp; 
-			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="updateAdDiv()">修改</a>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+			<%-- <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="updateAdDiv()">修改</a>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp; 
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="delNoticeDiv('${ctxPath }')">取消</a>&nbsp;&nbsp;
-			&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; --%>
+			&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
 			<a href="#" class="easyui-linkbutton" iconCls="icon-download" plain="false" onclick="downNoticeDiv('${ctxPath }')">下载</a>&nbsp;&nbsp;
 		</div>
 	</div>
