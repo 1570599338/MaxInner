@@ -126,13 +126,17 @@ function downPage(ctxPath,type,title){
 		dataType : 'json',
 		success : function(data) {
 			if(data){
-				if(data.city=='BJ'){
+				if(data.city=='SH')
+					ctxPath=commonBase.urlsh;
+				else if(data.city=='GZ')
+					ctxPath=commonBase.urlgz;
+			/*	if(data.city=='BJ'){*/
 					$("#typeId").val(type);
 					$("#title").val(title);
 					$("#type").val("2");
 					$("#downfileForm").attr("action",ctxPath + '/home/todownFilePage');
 					$("#downfileForm").submit();
-				}else if(data.city=='GZ'){
+				/*}else if(data.city=='GZ'){
 					sayInfo("file://192.168.20.230/共享/Tools<br> 因流量原因请将上面地址复制到浏览器中打开使用");
 					return;
 				}else if(data.city=='SH'){
@@ -145,7 +149,7 @@ function downPage(ctxPath,type,title){
 							"因流量原因请将上面地址复制到浏览器中打开使用");
 					return;
 					
-				}
+				}*/
 			}else{
 				sayInfo("对不起，出错了!");
 				return;
@@ -155,7 +159,6 @@ function downPage(ctxPath,type,title){
 			sayInfo("出错了。");
 		}
 	}); 
-	
 }
 
 
@@ -168,15 +171,19 @@ function downPageHead(ctxPath,modelId,modeltitle){
 		dataType : 'json',
 		success : function(data) {
 			if(data){
-				if(data.city=='BJ'){
+				if(data.city=='SH')
+					ctxPath=commonBase.urlsh;
+				else if(data.city=='GZ')
+					ctxPath=commonBase.urlgz;
+				
 					$("#modelId").val(modelId);
 					$("#modelTitle").val(modeltitle);
 					$("#type").val("1");
 					$("#downfileForm").attr("action",ctxPath + '/home/todownFilePage');
 					$("#downfileForm").submit();
-				}else{
+				/*}else{
 					sayInfo("<a href='file://192.168.1.240/Shared_Folders/Tools/'>test</a>");
-				}
+				}*/
 			}else{
 				sayInfo("对不起，因带宽限制上海、广州暂不支持在线查看，请直接到公司共享查看相关文件");
 				return;
