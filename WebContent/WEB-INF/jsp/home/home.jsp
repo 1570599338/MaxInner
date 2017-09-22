@@ -10,6 +10,7 @@
 <META NAME="Author" CONTENT="oscar999">
 <%@include file="/WEB-INF/jsp/inc/easyUI.jsp"%>
 <link rel="stylesheet" href="${ctxPath}/css/front/css/layout.css" type="text/css" />
+<script type="text/javascript" src="${ctxPath}/js/common.js"></script>
 <script type="text/javascript" src="${ctxPath}/jspage/home/home.js"></script>
 <script type="text/javascript" src="${ctxPath}/js/front/lunbo/koala.min.1.5.js"></script>
 <%-- <script type="text/javascript" src="${ctxPath}/js/front/lunbo/terminator2.2.min.js"></script> --%>
@@ -75,8 +76,8 @@ function DrawImage(ImgD,w,h){
     <div class="fl_right">
       
       <ul id="topnav" class="clear">
-       <li><a href="${ctxPath}/manage/seeManage">经营管理</a></li>
-      	<li><a href="${ctxPath}/meet/toHomepage">会议室</a></li>
+       <%-- <li><a href="${ctxPath}/manage/seeManage">经营管理</a></li>
+      	<li><a href="${ctxPath}/meet/toHomepage">会议室</a></li> --%>
         
         <li><a href="#">快速查找</a>
           <ul>
@@ -93,7 +94,8 @@ function DrawImage(ImgD,w,h){
                 <li><a href="http://maxinsight.21tb.com" target="_blank">培训平台</a></li>
                 <li><a href="http://192.168.1.246/?#" target="_blank">渠道管理平台</a></li> 
              </ul>       	
-        </li>        
+        </li>  
+         <li class="active last"><a href="${ctxPath}/meet/toHomepage">会议室</a></li>      
         <li><a href="${ctxPath}/connnect/toConnectPage">通讯录</a></li>
         <li class="active last"><a href="${ctxPath}/home/toHome">首页</a></li>
       </ul>
