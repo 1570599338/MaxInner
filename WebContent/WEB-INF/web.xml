@@ -3,7 +3,7 @@
   <display-name>MaxInner</display-name>
   <context-param>
     <param-name>webAppRootKey</param-name>
-    <param-value>qc.root</param-value>
+    <param-value>max.root</param-value>
   </context-param>
   <servlet>
     <servlet-name>springmvc-jsp</servlet-name>
