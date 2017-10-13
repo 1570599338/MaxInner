@@ -15,7 +15,7 @@
 <script src="${ctxPath }/js/sunmmernote/lang/summernote-zh-CN.js"></script>
 <script src="${ctxPath }/jspage/home/manageinfo.js"></script> 
 <link rel="stylesheet" href="${ctxPath}/css/front/css/layout.css" type="text/css" />
-<link rel="stylesheet" href="${ctxPath}/css/front/css/detail-activity.css" type="text/css"/>
+<link rel="stylesheet" href="${ctxPath}/css/front/css/detail-book.css" type="text/css"/>
 <link rel="stylesheet" href="${ctxPath}/css/front/css/detail-p.css" type="text/css"/>
 </head>
 <body id="top">
@@ -45,9 +45,10 @@
                 <li><a href="http://192.168.1.246/?#" target="_blank">渠道管理平台</a></li> 
              </ul>       	
         </li>  
-         <li class="active last"><a href="${ctxPath}/meet/toHomepage">会议室</a></li>      
+        <li class="active last"><a href="${ctxPath}/manage/seeManage">图书</a></li>
+         <li ><a href="${ctxPath}/meet/toHomepage">会议室</a></li>      
         <li><a href="${ctxPath}/connnect/toConnectPage">通讯录</a></li>
-        <li class="active last"><a href="${ctxPath}/home/toHome">首页</a></li>
+        <li ><a href="${ctxPath}/home/toHome">首页</a></li>
       </ul>
     </div>
   </div>
@@ -57,11 +58,11 @@
 	<div id="detail">    	  
     	 <div class="detail_content clear">
     	 
-         <p style="padding:10px 0 7px 10px;border-bottom:1px dashed #ccc;"><a href="${ctxPath}/home/toHome">首页</a>&nbsp;&gt;&nbsp;<a href="${ctxPath}/home/toHome">活动展示</a>&nbsp;&gt;&nbsp;</p>
+         <p style="padding:10px 0 7px 10px;border-bottom:1px dashed #ccc;"><a href="${ctxPath}/home/toHome">首页</a>&nbsp;&gt;&nbsp;<a href="${ctxPath}/home/toHome">图书</a>&nbsp;&gt;&nbsp;</p>
             <div class="ctxx">
-            	<div class="title">${manager.manageTitle}</div>
-                <div class="time">${manager.time}</div>
-                <div id="summernote"><p>${manager.content}</p></div>
+            	<div class="title">${book.manageTitle}</div>
+                <div class="time">${book.time}</div>
+                <div id="summernote"><p>${book.content}</p></div>
 				  <script>
 				    $(document).ready(function() {
 				        $('#summernote').summernote();
@@ -79,7 +80,7 @@
              </c:if>
             </div> 
       	</div>
-      <div class="classify">
+  <%--     <div class="classify">
             <div class="cf_title">
                 <h3>相关分类</h3>
             </div>
@@ -94,11 +95,11 @@
                     
                 </ul>
             </div>
-      </div>
+      </div> --%>
     </div>    
 </div>
 <!-- ###########################################################链接结束############################################ -->
-<div class="wrapper">
+<div class="wrapperfoot">
   <div id="copyright" class="clear">
     <p class="fl_left">Copyright &copy; 2016 - All Rights Reserved - <a href="#">MaxInsight</a></p>
    
