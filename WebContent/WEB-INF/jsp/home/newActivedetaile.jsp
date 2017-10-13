@@ -44,8 +44,9 @@
                 <li><a href="http://maxinsight.21tb.com" target="_blank">培训平台</a></li>
                 <li><a href="http://192.168.1.246/?#" target="_blank">渠道管理平台</a></li> 
              </ul>       	
-        </li>    
-         <li class="active last"><a href="${ctxPath}/meet/toHomepage">会议室</a></li>    
+        </li>   
+        <li><a href="${ctxPath}/manage/seeManage">图书</a></li> 
+         <li ><a href="${ctxPath}/meet/toHomepage">会议室</a></li>    
         <li><a href="${ctxPath}/connnect/toConnectPage">通讯录</a></li>
         <li class="active last"><a href="${ctxPath}/home/toHome">首页</a></li>
       </ul>
@@ -87,7 +88,6 @@
                     <!-- <li><a href="templet/list.html">模板下载</a></li> -->
                     <li><a href="${ctxPath}/connnect/toConnectPage">通讯录</a></li>
                     <li><a href="${ctxPath}/home/toHome#rules">规章制度</a></li>
-                    
                 </ul>
             </div>
       </div>
