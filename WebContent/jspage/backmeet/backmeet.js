@@ -181,7 +181,16 @@ function getDate(dateTime){
 												if(meetInfo[n].meetId==meet[m].pk_id){
 													if(i+1-meetInfo[n].startTime==0.5){
 														tbody = tbody + "<td  onclick=updateBookMeet('"+meetInfo[j].pk_id+"') > " ;
-														tbody = tbody + "<div class='updown'><div class='up'>"+	"预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='up'>"+	"预定人：<font color='#FFFFFF'>"+meetInfo[j+1].booker+"</font> "+"</div></div>";
+														//tbody = tbody + "<div class='updown'><div class='up'>"+	"预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='up'>"+	"预定人：<font color='#FFFFFF'>"+meetInfo[j+1].booker+"</font> "+"</div></div>";
+														tbody = tbody + "<div class='updown'><div class='up'>"+	"预定人：<font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='up'>"+	"预定人：<font color='#FFFFFF'>";
+														
+														for(var tem = j+1;tem<meetInfo.length;tem++){
+															if(i+1-meetInfo[tem].startTime==0.5 && meetInfo[tem].meetId==meet[m].pk_id)
+																tbody = tbody + meetInfo[tem].booker;
+														}
+														tbody = tbody +"</font></div></div>";
+														
+														
 														tbody = tbody +	"</td>";
 														endflag=1;
 														//m++;

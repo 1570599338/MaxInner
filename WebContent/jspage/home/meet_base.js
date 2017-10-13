@@ -138,7 +138,15 @@ function getDate(dateTime){
 												if(meetInfo[n].meetId==meet[m].pk_id){
 													if(i+1-meetInfo[n].startTime==0.5){
 														tbody = tbody + "<td > " ;
-														tbody = tbody + "<div class='updown'><div class='up'>"+	"&nbsp;<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='up'>"+	"<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j+1].booker+"</font> "+"</div></div>";
+														//tbody = tbody + "<div class='updown'><div class='up'>"+	"&nbsp;<B>预定人1：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='up'>"+	"<B>预定人x：</B><font color='#FFFFFF'>"+meetInfo[j+1].booker+"</font> "+"</div></div>";
+														tbody = tbody + "<div class='updown'><div class='up'>"+	"&nbsp;<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='up'>"+	"&nbsp;<B>预定人：</B><font color='#FFFFFF'>";
+														
+														for(var tem = j+1;tem<meetInfo.length;tem++){
+															if(i+1-meetInfo[tem].startTime==0.5 && meetInfo[tem].meetId==meet[m].pk_id)
+																tbody = tbody + meetInfo[tem].booker;
+														}
+														tbody = tbody +"</font></div></div>";
+														
 														tbody = tbody +	"</td>";
 														endflag=1;
 														//m++;
@@ -148,7 +156,7 @@ function getDate(dateTime){
 											}
 											if(endflag==0){
 												tbody = tbody + "<td > " ;
-												tbody = tbody + "<div class='updown'><div class='up'>"+	"<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='down'></div></div>";
+												tbody = tbody + "<div class='updown'><div class='up'>"+	"&nbsp;<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div><div class='down'></div></div>";
 												tbody = tbody +	"</td>";
 												break;	
 											}else{
@@ -158,7 +166,7 @@ function getDate(dateTime){
 										// 开始半小时的节点
 										if(meetInfo[j].startTime-i==0.5){
 											tbody = tbody + "<td  > " ;
-											tbody = tbody + "<div class='updown'><div class='down'></div><div class='up'>"+	"&nbsp;&nbsp;&nbsp;<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"</font> "+"</div></div>";
+											tbody = tbody + "<div class='updown'><div class='down'></div><div class='up'>"+	"&nbsp;&nbsp;&nbsp;<B>预定人：</B><font color='#FFFFFF'>"+meetInfo[j].booker+"ddd</font> "+"</div></div>";
 											tbody = tbody +	"</td>";
 											break;
 										}
