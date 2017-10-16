@@ -83,16 +83,26 @@ public class HomeController {
 			
 			String ip = Utils.getIpAddr(request);
 			String[] ipPart = ip.split("\\.");
-			String city ="";
-			if(ipPart[2].equals("10"))
-				city="BJ";
-			if(ipPart[2].equals("20"))// 广州：20
-				city="GZ";
-			if(ipPart[2].equals("21"))// 上海：21
-				city="SH";
+			String table_uploadFileModel ="";
+			String table_uploadFileType ="";
+			
+			String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+			String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+			String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
 			
 			
-			list = uploadFileService.getuploadList();
+			if(ipPart[2].equals(GZcompanyIP)){// 广州：20
+				table_uploadFileModel="uploadFileModel_GZ";
+				table_uploadFileType="uploadFileType_GZ";
+			}else if(ipPart[2].equals(SHcompanyIP)){// 上海：21
+				table_uploadFileModel="uploadFileModel_SH";
+				table_uploadFileType="uploadFileType_SH";
+			}else{
+				table_uploadFileModel="uploadFileModel";
+				table_uploadFileType="uploadFileType";
+			}
+			
+			list = uploadFileService.getuploadList(table_uploadFileModel,table_uploadFileType);
 			
 		} catch (Exception e) {
 			log.error("系统公告出现问题啦！", e);
@@ -332,15 +342,18 @@ public class HomeController {
 	public void getIP(HttpServletRequest request,HttpServletResponse response,RedirectAttributes  redirect) throws Exception{
 		response.setContentType("text/json; charset=UTF-8"); // 注意设置为json
 		response.setCharacterEncoding("UTF-8");// 传送中文时防止乱码
+		String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+		String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+		String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
 		String ip = Utils.getIpAddr(request);
 		String[] ipPart = ip.split("\\.");
 		String city ="";
-		if(ipPart[2].equals("10"))
-			city="BJ";
-		if(ipPart[2].equals("20"))// 广州：20
+		if(ipPart[2].equals(GZcompanyIP))// 广州：20
 			city="GZ";
-		if(ipPart[2].equals("21"))// 上海：21
+		else if(ipPart[2].equals(SHcompanyIP))// 上海：21
 			city="SH";
+		else
+			city="BJ";
 		Map<String, Object> result  = new HashMap<>();
 		result.put("city", city);
 		log.info("*********IP 地址："+ip + "**************"+city);
@@ -355,3 +368,7 @@ public class HomeController {
 		out.close();
 	}
 }
+
+
+
+

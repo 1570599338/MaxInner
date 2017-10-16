@@ -209,6 +209,7 @@ public class UploadFileServeImpl implements IUploadFileService {
 	public PaginationSupport getFile(String page, String rows, String sort,String order, String fileName,Map<String,String> condition) {
 		StringBuffer sb=new StringBuffer();
 		sb.append("select f.pk_id, m.title modelName,t.title typeName,f.fileName,f.path fileAllName,CONVERT(varchar(100), f.createAt, 23) createTime ,f.createBy from uploadFile f ");
+		sb.append("");
 		sb.append(" join uploadFileType t on t.pk_id = f.typeid ");
 		sb.append(" join uploadFileModel m on m.pk_id = f.modelid where 1=1 ");
 		

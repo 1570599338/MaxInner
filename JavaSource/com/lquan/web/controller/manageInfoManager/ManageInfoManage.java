@@ -206,16 +206,36 @@ public class ManageInfoManage {
 	 */
 	@RequestMapping(value="/seeManage")
 	public String seeActivity(HttpServletRequest request) throws Exception{
-		String pk_id = FormUtil.getStringFiledValue(request, "activeID");
-		Map<String, Object> map = this.manageInfoService.queryOneManageOrder(pk_id,null);
-		Map<String, Object> mapup = this.manageInfoService.queryOneManageOrder(map.get("pk_id")+"","up");
-		Map<String, Object> mapdown = this.manageInfoService.queryOneManageOrder(map.get("pk_id")+"","down");
+		String companyid = FormUtil.getStringFiledValue(request, "companyx");
+		String departMentCode = FormUtil.getStringFiledValue(request, "departmentx");
+		String gender = FormUtil.getStringFiledValue(request, "genderx");
+		String useName = FormUtil.getStringFiledValue(request, "useNamex");
+		String telphone = FormUtil.getStringFiledValue(request, "telphonex");
+		String path = "\\upload"+"\\"+"phonefile"+"\\"+"Img"+"\\";
+		List<Map<String, Object>> list = this.manageInfoService.getBookList(companyid, departMentCode, gender, useName, telphone, path);
+		request.setAttribute("list", list);
+		request.setAttribute("companyid", companyid);
+		request.setAttribute("departMentCode", departMentCode);
+		request.setAttribute("gender", gender);
+		request.setAttribute("useName", useName);
+		request.setAttribute("telphone", telphone);
 		
+		return "home/bookList";
+	}
+	
+	
+	/**
+	 * 跳转到查看页面
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value="/seeManageOne")
+	public String seeManageOne(HttpServletRequest request) throws Exception{
+		String pk_id = FormUtil.getStringFiledValue(request, "pk_id");
+		Map<String, Object> map = this.manageInfoService.queryBookOne(pk_id);
 		
-		request.setAttribute("manager", map);
-		request.setAttribute("managerup", mapup);
-		request.setAttribute("managerdown", mapdown);
+		request.setAttribute("book", map);
 		
-		return "home/manageInfo";
+		return "home/bookInfo";
 	}
 }

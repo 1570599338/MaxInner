@@ -26,6 +26,7 @@ import snt.common.web.util.WebUtils;
 import com.google.gson.Gson;
 import com.lquan.business.uploadFileManager.IUploadFileService;
 import com.lquan.util.MyFileUtil;
+import com.lquan.util.Utils;
 import com.lquan.web.util.FormUtil;
 
 /**
@@ -51,12 +52,33 @@ public class UploadController {
 	 */
 	@RequestMapping(value="/toPage")
 	public String toLogin(HttpServletRequest request) throws Exception{
+		String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+		String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+		String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
 		
-		List<Map<String, Object>>  list = uploadFileService.getuploadList();
+		String ip = Utils.getIpAddr(request);
+		String[] ipPart = ip.split("\\.");
+		String table_uploadFileModel ="";
+		String table_uploadFileType ="";
+		
+		if(ipPart[2].equals(GZcompanyIP)){// 广州：20
+			table_uploadFileModel="uploadFileModel_GZ";
+			table_uploadFileType="uploadFileType_GZ";
+		}else if(ipPart[2].equals(SHcompanyIP)){// 上海：21
+			table_uploadFileModel="uploadFileModel_SH";
+			table_uploadFileType="uploadFileType_SH";
+		}else{
+			table_uploadFileModel="uploadFileModel";
+			table_uploadFileType="uploadFileType";
+		}
+		
+		//list = uploadFileService.getuploadList(table_uploadFileModel,table_uploadFileType);
+		
+		List<Map<String, Object>>  list = uploadFileService.getuploadList(table_uploadFileModel,table_uploadFileType);
 		request.setAttribute("uploadList", list);
 		
-		// return "uploadfile/uploadFileModelPage";
-		return "redirect:http://www.baidu.com/";
+		 return "uploadfile/uploadFileModelPage";
+		//return "redirect:http://www.baidu.com/";
 	}
 	
 	/**
@@ -163,7 +185,27 @@ public class UploadController {
 	public void  queryFileModelList(HttpServletRequest request,HttpServletResponse response){
 		
 		try {
-			List<Map<String, Object>> modellist = this.uploadFileService.getuploadModelList();
+			
+			String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+			String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+			String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
+			
+			String ip = Utils.getIpAddr(request);
+			String[] ipPart = ip.split("\\.");
+			String table_uploadFileModel ="";
+			String table_uploadFileType ="";
+			
+			if(ipPart[2].equals(GZcompanyIP)){// 广州：20
+				table_uploadFileModel="uploadFileModel_GZ";
+				table_uploadFileType="uploadFileType_GZ";
+			}else if(ipPart[2].equals(SHcompanyIP)){// 上海：21
+				table_uploadFileModel="uploadFileModel_SH";
+				table_uploadFileType="uploadFileType_SH";
+			}else{
+				table_uploadFileModel="uploadFileModel";
+				table_uploadFileType="uploadFileType";
+			}
+			List<Map<String, Object>> modellist = this.uploadFileService.getuploadModelList(table_uploadFileModel);
 			//json形式返回以树形展示
 			JSONArray json=JSONArray.fromObject(modellist);
 			
@@ -293,6 +335,28 @@ public class UploadController {
 			Map<String,String> condition = new HashMap<String, String>();
 			condition.put("modelId", modelId==null?"":modelId);
 			condition.put("typeId", typeId==null?"":typeId);
+			
+			String ip = Utils.getIpAddr(request);
+			String[] ipPart = ip.split("\\.");
+			String table_uploadFileModel ="";
+			String table_uploadFileType ="";
+			
+			String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+			String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+			String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
+			
+			
+			if(ipPart[2].equals(GZcompanyIP)){// 广州：20
+				table_uploadFileModel="uploadFileModel_GZ";
+				table_uploadFileType="uploadFileType_GZ";
+			}else if(ipPart[2].equals(SHcompanyIP)){// 上海：21
+				table_uploadFileModel="uploadFileModel_SH";
+				table_uploadFileType="uploadFileType_SH";
+			}else{
+				table_uploadFileModel="uploadFileModel";
+				table_uploadFileType="uploadFileType";
+			}
+			
 			
 			PaginationSupport ps = this.uploadFileService.getFile(page, rows,sort,order,fileName,condition);
 			Map<String,Object> result = new HashMap<String,Object>();

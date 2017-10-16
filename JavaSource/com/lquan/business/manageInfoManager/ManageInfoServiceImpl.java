@@ -36,7 +36,7 @@ public class ManageInfoServiceImpl implements IManageInfoService {
 	public boolean addManageInfo(String title, String message,String messageFormat) {
 		// TODO 进行管理信息添加
 		StringBuffer sql = new StringBuffer();
-		sql.append("insert into dbo.manageInfo(manageTitle,content,createBy,createAt,flage) values(?,?,?,getdate(),?) ");
+		sql.append("insert into dbo.bookInfo(manageTitle,content,createBy,createAt,flage) values(?,?,?,getdate(),?) ");
 		//添加主键
 		long pk_id = PrimaryKeyGenerator.getLongKey();
 		int head = commonDao.update(sql.toString(),  new Object[] {  title,message,"admin",1});
@@ -59,7 +59,7 @@ public class ManageInfoServiceImpl implements IManageInfoService {
 	@Override
 	public boolean editManageInfo(String pk_id,String title, String message,String messageFormat) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("update dbo.manageInfo set manageTitle=?,content=? where pk_id =?");
+		sql.append("update dbo.bookInfo set manageTitle=?,content=? where pk_id =?");
 		int head = commonDao.update(sql.toString(),  new Object[] { title,message, pk_id});
 		
 		if(head>0)
@@ -77,7 +77,7 @@ public class ManageInfoServiceImpl implements IManageInfoService {
 	@Override
 	public Map<String, Object> queryOneManage(String pk_id) throws Exception {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select pk_id,manageTitle,content,CONVERT(varchar(100), createAt, 23) time,createBy,flage from manageInfo where pk_id=").append(pk_id);
+		sb.append("select pk_id,manageTitle,content,CONVERT(varchar(100), createAt, 23) time,createBy,flage from bookInfo where pk_id=").append(pk_id);
 		List<Map<String,Object>> targetResult = commonDao.queryForMapList(sb.toString()) ;
 		if(null != targetResult && targetResult.size() > 0){
 			Map<String, Object> result = targetResult.get(0);
@@ -95,7 +95,7 @@ public class ManageInfoServiceImpl implements IManageInfoService {
 	@Override
 	public boolean delManageInfo(String pk_id) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("delete from dbo.manageInfo where pk_id =?");
+		sql.append("delete from dbo.bookInfo where pk_id =?");
 		int head = commonDao.update(sql.toString(),  new Object[] { pk_id});
 		if(head>0)
 			return true;
@@ -115,7 +115,7 @@ public class ManageInfoServiceImpl implements IManageInfoService {
 	@Override
 	public PaginationSupport manageList(String page, String rows, String sort,String order, String title) {
 		StringBuffer sb=new StringBuffer();
-		sb.append("select pk_id,manageTitle,content,CONVERT(varchar(100), createAt, 23) time,createBy,flage from manageInfo");
+		sb.append("select pk_id,manageTitle,content,CONVERT(varchar(100), createAt, 23) time,createBy,flage from bookInfo");
 		sb.append(" Where 1=1 ");
 		
 		if(title!=null && !"".equals(title)){
@@ -139,7 +139,7 @@ public class ManageInfoServiceImpl implements IManageInfoService {
 	@Override
 	public Map<String, Object> queryOneManageOrder(String pk_id,String stat) throws Exception {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select pk_id,manageTitle,content,CONVERT(varchar(100), createAt, 23) time,createBy,flage from manageInfo where 1=1");
+		sb.append("select pk_id,manageTitle,content,CONVERT(varchar(100), createAt, 23) time,createBy,flage from bookInfo where 1=1");
 		if(stat!=null && !"".equals(stat)){
 			if("up".equals(stat)){
 				sb.append(" and pk_id>").append(pk_id);
@@ -165,4 +165,35 @@ public class ManageInfoServiceImpl implements IManageInfoService {
 		}
 		return null;
 	}
+	
+	
+	/**
+	 * 获取图书的
+	 * @return
+	 */
+	@Override
+	public List<Map<String, Object>>  getBookList(String companyid,String departMentCode,String gender,String userName,String telPhone,String path){
+		StringBuffer sql = new StringBuffer();
+		sql.append(" SELECT pk_id,LEFT(manageTitle,14) manageTitle,content,img,case  when img is NULL then '\\upload\\demo.jpg' else '\\img\\demo\\' + img  END as path  FROM bookInfo ");
+		List<Map<String, Object>> list = commonDao.queryForMapList(sql.toString());
+		return list;
+	}
+	
+	/**
+	 * 
+	 * @param pk_id
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> queryBookOne(String pk_id) throws Exception {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT pk_id,LEFT(manageTitle,14) manageTitle,content,img,case  when img is NULL then '\\upload\\demo.jpg' else '\\img\\demo\\' + img  END as path,createAt time  FROM bookInfo where pk_id=").append(pk_id);
+		List<Map<String,Object>> targetResult = commonDao.queryForMapList(sb.toString()) ;
+		if(null != targetResult && targetResult.size() > 0){
+			Map<String, Object> result = targetResult.get(0);
+			return result;
+		}
+		return null;
+	}
+	
 }

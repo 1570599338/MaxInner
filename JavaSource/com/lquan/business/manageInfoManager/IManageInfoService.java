@@ -1,5 +1,6 @@
 package com.lquan.business.manageInfoManager;
 
+import java.util.List;
 import java.util.Map;
 
 import snt.common.dao.base.PaginationSupport;
@@ -63,6 +64,28 @@ public interface IManageInfoService {
 	 * @throws Exception
 	 */
 	public Map<String, Object> queryOneManageOrder(String pk_id,String stat) throws Exception;
+	
+	
+	/**
+	 * 图书显示
+	 * @param companyid
+	 * @param departMentCode
+	 * @param gender
+	 * @param userName
+	 * @param telPhone
+	 * @param path
+	 * @return
+	 */
+	public List<Map<String, Object>>  getBookList(String companyid,String departMentCode,String gender,String userName,String telPhone,String path);
+	
+	
+	/**
+	 * 查询预定图书
+	 * @param pk_id
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> queryBookOne(String pk_id) throws Exception;
 }
 
 

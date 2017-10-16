@@ -51,13 +51,15 @@ public class MeetController {
 	
 	@RequestMapping(value="topage")
 	public String toPage(HttpServletRequest request){
-		
+		String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+		String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+		String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
 		String ip = Utils.getIpAddr(request);
 		String[] ipPart = ip.split("\\.");
 		String type ="";
-		if(ipPart[2].equals("20"))// 广州
+		if(ipPart[2].equals(GZcompanyIP))// 广州
 			return "backmeet/managerMeetGZ";
-		else if(ipPart[2].equals("21")) //上海
+		else if(ipPart[2].equals(SHcompanyIP)) //上海
 			return "backmeet/managerMeetSH";
 		else
 			return "backmeet/managerMeet";
@@ -70,13 +72,15 @@ public class MeetController {
 	 */
 	@RequestMapping(value="toHomepage")
 	public String toHomepage(HttpServletRequest request){
-		
+		String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+		String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+		String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
 		String ip = Utils.getIpAddr(request);
 		String[] ipPart = ip.split("\\.");
 		String type ="";
-		if(ipPart[2].equals("20"))// 广州
+		if(ipPart[2].equals(GZcompanyIP))// 广州
 			return "home/meet_baseGZ";
-		else if(ipPart[2].equals("21")) //上海
+		else if(ipPart[2].equals(SHcompanyIP)) //上海
 			return "home/meet_baseSH";
 		else
 			return "home/meet_base";
@@ -104,13 +108,15 @@ public class MeetController {
 		//String bookassist = FormUtil.getStringFiledValue(request, "bookassist");
 		String booker = FormUtil.getStringFiledValue(request, "booker");
 		String remark = FormUtil.getStringFiledValue(request, "remark");
-		
+		String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+		String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+		String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
 		String ip = Utils.getIpAddr(request);
 		String[] ipPart = ip.split("\\.");
 		String type ="";
-		if(ipPart[2].equals("20"))// 广州
+		if(ipPart[2].equals(GZcompanyIP))// 广州
 			type="3";
-		else if(ipPart[2].equals("21")) //上海
+		else if(ipPart[2].equals(SHcompanyIP)) //上海
 			type="2";
 		else
 			type="1";
@@ -174,12 +180,16 @@ public class MeetController {
 		String booker = FormUtil.getStringFiledValue(request, "booker");
 		String remark = FormUtil.getStringFiledValue(request, "remark");
 		
+		String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+		String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+		String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
+		
 		String ip = Utils.getIpAddr(request);
 		String[] ipPart = ip.split("\\.");
 		String type ="";
-		if(ipPart[2].equals("20"))// 广州
+		if(ipPart[2].equals(GZcompanyIP))// 广州
 			type="3";
-		else if(ipPart[2].equals("21")) //上海
+		else if(ipPart[2].equals(SHcompanyIP)) //上海
 			type="2";
 		else
 			type="1";
@@ -248,12 +258,15 @@ public class MeetController {
 			  Date date = dateFormater.parse(dateTime);
 			  weekday = getWeek(date);
 		}
+		String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+		String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+		String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
 		String ip = Utils.getIpAddr(request);
 		String[] ipPart = ip.split("\\.");
 		String type ="";
-		if(ipPart[2].equals("20"))// 广州
+		if(ipPart[2].equals(GZcompanyIP))// 广州
 			type="3";
-		else if(ipPart[2].equals("21")) //上海
+		else if(ipPart[2].equals(SHcompanyIP)) //上海
 			type="2";
 		else
 			type="1";
