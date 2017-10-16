@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import snt.common.web.util.WebUtils;
+
 import com.lquan.ad.base.ldap.LDAPDAO;
 import com.lquan.business.login.ILoginService;
 import com.lquan.common.Constants;
@@ -116,12 +118,16 @@ public class UserLoginController {
 	 */
 	@RequestMapping(value="/main")
 	public String toDatagrid(HttpServletRequest request){
+		String BJcompanyIP=WebUtils.getModuleProperty("BJcompanyIP1");
+		String SHcompanyIP=WebUtils.getModuleProperty("SHcompanyIP1");
+		String GZcompanyIP=WebUtils.getModuleProperty("GZcompanyIP1");
+		
 		String ip = Utils.getIpAddr(request);
 		String[] ipPart = ip.split("\\.");
 		String type ="";
-		if(ipPart[2].equals("0"))// 20广州
+		if(ipPart[2].equals(GZcompanyIP))// 20广州
 			type="GZ";
-		else if(ipPart[2].equals("21")) //上海
+		else if(ipPart[2].equals(SHcompanyIP)) //上海
 			type="SH";
 		else
 			type="BJ";
