@@ -119,8 +119,8 @@ $(function(){
     <div class="fl_right">
       
       <ul id="topnav" class="clear"> 
-      <li><a href="${ctxPath}/manage/seeManage">经营管理</a></li>
-      <li><a href="${ctxPath}/meet/toHomepage">会议室</a></li>
+     <%--  <li><a href="${ctxPath}/manage/seeManage">经营管理</a></li> --%>
+      
        <li><a href="#">快速查找</a>
           <ul>
             <li><a href="index.html/#hpage_info">最新公告</a></li>
@@ -137,10 +137,8 @@ $(function(){
                 <li><a href="http://192.168.1.246/?#" target="_blank">渠道管理平台</a></li> 
              </ul>       	
         </li>        
-        
-       <!--  <li>
-        	<a href="javascript:void(0);" onclick="meet()">会议室</a>        	
-        </li> -->
+       <li><a href="${ctxPath}/manage/seeManage">图书</a></li>
+        <li><a href="${ctxPath}/meet/toHomepage">会议室</a></li>
         <li class="active last"><a href="${ctxPath}/connnect/toConnectPage">通讯录</a>
         </li>
         <li ><a href="${ctxPath}/home/toHome">首页</a></li>

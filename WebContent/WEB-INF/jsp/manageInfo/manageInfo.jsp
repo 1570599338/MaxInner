@@ -10,7 +10,7 @@
 </style>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>经营管理</title>
+	<title>图书管理</title>
 
 </head>
 <body>
@@ -47,18 +47,18 @@
 
 		<div style="margin-bottom: 5px;margin-top: 5px;">
 			&nbsp;&nbsp;&nbsp;
-			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="false" onclick="addAdActivityDiv()">添加信息</a>&nbsp;&nbsp; 
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="false" onclick="addAdActivityDiv()">添加图书</a>&nbsp;&nbsp; 
 			&nbsp;&nbsp;&nbsp;
-			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="editActivityDiv()">编辑信息</a>&nbsp;&nbsp;
+			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="editActivityDiv()">编辑图书</a>&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;
-			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="deleteActivity()">删除信息</a>&nbsp;&nbsp;
-<%-- 			&nbsp;&nbsp;&nbsp;
-			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="upLoadPhoto('${ctxPath }')">上传封面片</a>&nbsp;&nbsp;
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="deleteActivity()">删除图书</a>&nbsp;&nbsp;
+ 			&nbsp;&nbsp;&nbsp;
+<%--		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="upLoadPhoto('${ctxPath }')">上传封面片</a>&nbsp;&nbsp;
 	 		&nbsp;&nbsp;&nbsp;
 	 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="addFlageNew('${ctxPath }')">设置new标识</a>&nbsp;&nbsp;
 	 		&nbsp;&nbsp;&nbsp;
-	 		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="delFlageNew('${ctxPath }')">删除new标识</a>&nbsp;&nbsp; --%>
-	 		&nbsp;&nbsp;&nbsp;
+	 		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="delFlageNew('${ctxPath }')">删除new标识</a>&nbsp;&nbsp;
+	 		&nbsp;&nbsp;&nbsp; --%>
 		</div>
 	</div>
 	<!--数据显示 --END -->

@@ -19,7 +19,7 @@ img{margin:0; padding:0; border:none;}
 html[xmlns] .clear{display:block;}
 * html .clear{height:1%;}
 a{outline:none; text-decoration:none;}
-.fl_left{float:left;}
+.fl_left{float:center;}
 .fl_right{float:right;}
 .imgl, .imgr{border:1px solid #444444; padding:4px;}
 .imgl{float:left; margin:15px; clear:left;}
@@ -434,6 +434,12 @@ col5 #container{
 
 
 /* ----------------------------------------------Copyright-------------------------------------*/
+div.wrapper p{
+	text-align:left;
+}
+div.wrapperfoot p{
+	text-align:center;
+}
 
 #copyright{
 	padding:15px 0;

@@ -385,13 +385,13 @@ function exit(){
 					<a href="javascript:void(0);" src="${ctxPath}/rule/toPage" class="cs-navi-tab">规章制度</a></p>
 				</div>
 				<c:choose>
-					<c:when test="${type=='SH'}">
+					<c:when test="${type eq 'SH'}">
 						<div title="下载专区" iconCls="icon-datasave">
-							<a href="javascript:void(0);" src="${ctxPath}/upload/toPage" class="cs-navi-tab">模板类型SH</a></p>
-							<a href="javascript:void(0);" src="${ctxPath}/upload/uploadFile" class="cs-navi-tab">上传文件SH</a></p>
+							<a href="javascript:void(0);" src="${SHIP}/upload/toPage" class="cs-navi-tab">模板类型SH</a></p>
+							<a href="javascript:void(0);" src="${SHIP}/upload/uploadFile" class="cs-navi-tab">上传文件SH</a></p>
 						</div>
 					</c:when>
-					<c:when test="${type=='GZ'}">
+					<c:when test="${type eq 'GZ'}">
 						<div title="下载专区" iconCls="icon-datasave">
 							<a href="javascript:void(0);" src="${GZIP}/upload/toPage" class="cs-navi-tab">模板类型GZ</a></p>
 							<a href="javascript:void(0);" src="${GZIP}/upload/uploadFile" class="cs-navi-tab">上传文件GZ</a></p>
@@ -413,10 +413,10 @@ function exit(){
 				<div title="会议室预定" iconCls="icon-audit">
 					<a href="javascript:void(0);" src="${ctxPath}/meet/topage" class="cs-navi-tab">会议室预定</a></p>
 				</div>
-				 <div title="经营管理" iconCls="icon-statistic">
-					<a href="javascript:void(0);" src="${ctxPath}/manage/topage" class="cs-navi-tab">经营管理信息</a></p>
+				 <div title="其他" iconCls="icon-statistic">
+					<a href="javascript:void(0);" src="${ctxPath}/manage/topage" class="cs-navi-tab">图书模块</a></p>
 					<a href="javascript:void(0);" src="${ctxPath}/holiday/topage" class="cs-navi-tab">年假查询</a></p>
-					<a href="javascript:void(0);" src="${ctxPath}/manage/topagex" class="cs-navi-tab">图书模块</a></p>
+
 				</div>
 				<%-- <div title="年假查询" iconCls="icon-statistic">
 					<a href="javascript:void(0);" src="${ctxPath}/holiday/topage" class="cs-navi-tab">经营管理信息</a></p>

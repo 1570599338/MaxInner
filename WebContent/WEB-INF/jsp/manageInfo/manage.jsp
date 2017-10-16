@@ -4,7 +4,7 @@
 <%@include file="/WEB-INF/jsp/inc/front.jsp"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>活动编辑</title>
+<title>图书管理</title>
  	<link href="${ctxPath }/js/sunmmernote/bootstrap.css" rel="stylesheet" />
 	<script src="${ctxPath }/js/sunmmernote/jquery2.1.4.js"></script> 
 	<script src="${ctxPath }/js/sunmmernote/bootstrap.js"></script>  
