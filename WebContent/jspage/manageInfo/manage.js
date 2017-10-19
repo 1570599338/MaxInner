@@ -27,7 +27,8 @@ function addManageInfoDiv(){
 
 // 返回
 function back(){
-	$('#summernote').summernote('destroy');
+	var ctxPath = $("#ctxPath").val();
+	window.location.href=ctxPath +'/manage/topage';
 }
 
 

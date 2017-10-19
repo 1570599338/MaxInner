@@ -24,14 +24,14 @@ function getdata(){
 						pageSize:20,
 						pageNumber:1,
 						//url : ctxPath + encodeURI(encodeURI('/notice/selectNoticeList?title='+title)),
-						url : ctxPath + encodeURI(encodeURI('/manage/selectManageList')),
+						url : ctxPath + encodeURI(encodeURI('/manage/selectBookTypeList')),
 						idField : 'pk_id',
 						queryParams:{
 							title:title
 						},
 						columns : [ 
 						            [ 
-						              	{ field : 'manageTitle', title : '标题', width : 80, sortable : true}, 
+						              	{ field : 'name', title : '标题', width : 80, sortable : true}, 
 										{field : 'createBy',title : '创建者',width : 80},
 										{field : 'time',title : '日期',width : 80}
 										
@@ -125,3 +125,60 @@ function onSubmitImg(){
 	}
 	
 }
+
+
+
+//添加模板类型
+function addBookType(){
+	// 清空数据
+	$("#model_Id").val("");
+	$("#model_name").val("");
+	//restFrom();
+	$("#addUploadDialog").dialog({title: "添加模板类型"});
+	$("#addUploadDialog").dialog('open');
+}
+
+// 取消按钮
+function cancleModelDialog(){
+	$("#addUploadDialog").dialog('close');
+}
+
+
+//提交文件的模板类型
+function submitbookTypeDialog(){
+	var model_name = $("#bookType").val();
+	var model_Id = $("#model_Id").val();
+	var url ="";
+	if(model_Id){
+		// 修改文件的模板
+		url = $("#ctxPath").val() + '/manage/editBookType';
+	}else{
+		// 添加文件的模板
+		url = $("#ctxPath").val() + '/manage/addBookType';
+	}
+	if(!model_name){
+		sayInfo("请填写图书类型！");
+		return false;
+	}
+	$("#addTacheForm").attr("action",url);
+	$("#addTacheForm").submit();
+	
+	
+}
+
+/**
+ * 编辑文件模板
+ */
+function editBookType(){
+	var menu = $("#dg").datagrid("getSelected");
+	if (menu){
+		$("#model_Id").val(menu.pk_id);
+		$("#bookType").val(menu.name);
+		$("#addUploadDialog").dialog({title: "编辑图书类型"});
+		$("#addUploadDialog").dialog('open');
+	}else{
+		sayInfo("请选择图书类型！");
+	}
+}
+
+
