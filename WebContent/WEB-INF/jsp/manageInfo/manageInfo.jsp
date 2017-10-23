@@ -8,6 +8,31 @@
 		display: block;
 	}
 </style>
+<script type="text/javascript">
+	$(function(){
+		var ctxPath = $("#ctxPath").val();
+		$('#bookType').combobox({ 
+			url:ctxPath + '/manage/queryBookTypeList',
+		    editable:true, //不可编辑状态
+		    cache: false,
+		    panelHeight: 'auto',//自动高度适合
+		    valueField:'pk_id',  
+		    textField:'name'
+		});
+		$("#bookType").combobox('select', '${bookType}');
+		if('${companyid}'==''){
+			$("#department").combobox('select', "--请选择--");
+		}else{
+			$("#department").combobox('select', '${departMentCode}');
+		}
+		
+		$("#bookType").combobox('select', '${bookTypex}');
+		/* $("#useName").val('${useName}');
+		$("#telphone").val('${telphone}'); */
+		
+	});
+
+</script>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>图书管理</title>
@@ -17,6 +42,7 @@
 	<form action="" method="post" id="dataForm" name="dataForm" >
 		<input type="hidden" value="${ctxPath }" name="ctxPath" id="ctxPath" />
 		<input type="hidden" name="pk_id" id="pk_id" />
+		<input type="hidden" name="bookTypeID" id="bookTypeID" />
 	</form>
 	<!--数据显示 --Start -->
 	<table id="dg" style="width: 700px; height: 300px" nowrap="true" fitColumns="true" data-options="
@@ -39,7 +65,10 @@
 	</table>
 	<div id="tb" style="padding: 10px 5px 5px 10px; height: auto;">
 		<div>&nbsp;&nbsp;&nbsp;
-			活&nbsp;动&nbsp;标&nbsp;题：<input class="input_text" type="text" style="width: 150px" id="log_title" name="log_title" />&nbsp;&nbsp;&nbsp; 
+			&nbsp;&nbsp;书&nbsp;&nbsp;名：<input class="input_text" type="text" style="width: 150px" id="log_title" name="log_title" />&nbsp;&nbsp;&nbsp; 
+			&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;类&nbsp;&nbsp;型：<input type="text" id="bookType" name="bookType" panelHeight="auto" class="easyui-combobox" value='${bookTypex}' />&nbsp;&nbsp;&nbsp; 
 			&nbsp;&nbsp;&nbsp;
 			<!-- 内&nbsp;&nbsp;&nbsp; 容：<input class="input_text" type="text" style="width: 150px" id="user_name" name="user_name" />&nbsp;&nbsp;&nbsp; -->
 			<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="getdata()">&nbsp;&nbsp;搜&nbsp;&nbsp;索&nbsp;&nbsp;</a>
@@ -53,9 +82,9 @@
 			&nbsp;&nbsp;&nbsp;
 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="deleteActivity()">删除图书</a>&nbsp;&nbsp;
  			&nbsp;&nbsp;&nbsp;
-<%--		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="upLoadPhoto('${ctxPath }')">上传封面片</a>&nbsp;&nbsp;
+			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="upLoadPhoto('${ctxPath }')">上传图书封面</a>&nbsp;&nbsp;
 	 		&nbsp;&nbsp;&nbsp;
-	 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="addFlageNew('${ctxPath }')">设置new标识</a>&nbsp;&nbsp;
+	 	<%--	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="false" onclick="addFlageNew('${ctxPath }')">设置new标识</a>&nbsp;&nbsp;
 	 		&nbsp;&nbsp;&nbsp;
 	 		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="delFlageNew('${ctxPath }')">删除new标识</a>&nbsp;&nbsp;
 	 		&nbsp;&nbsp;&nbsp; --%>
@@ -64,8 +93,8 @@
 	<!--数据显示 --END -->
 	
 	<!--上传图片-->
-	<div id="addimg" class="easyui-dialog" title="上传封面" data-options="closed: true,modal:true" style="width: 600px; height: 150px; padding-left: 20px; padding-top: 20px; text-align: center">
-	<form name="fileInfo" method="post"  enctype="multipart/form-data" action="<%=ctxPath%>/active/uploadActivtyImg">
+	<div id="addimg" class="easyui-dialog" title="上传图片封面" data-options="closed: true,modal:true" style="width: 600px; height: 150px; padding-left: 20px; padding-top: 20px; text-align: center">
+	<form name="fileInfo" method="post"  enctype="multipart/form-data" action="<%=ctxPath%>/manage/uploadBooksImg">
 			<input type="hidden" name="activitypkId" id="activitypkId" />
 			<table border="0"  style="text-align: left;">
 				<tr>

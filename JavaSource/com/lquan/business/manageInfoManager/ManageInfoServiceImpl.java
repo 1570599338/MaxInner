@@ -176,7 +176,7 @@ public class ManageInfoServiceImpl implements IManageInfoService {
 	@Override
 	public List<Map<String, Object>>  getBookList(String bookx, String bookTypex,String gender,String userName,String telPhone,String path){
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT b.pk_id,LEFT(b.manageTitle,14) manageTitle,b.content,b.img,case  when b.img is NULL then '\\upload\\demot.jpg' else '");
+		sql.append(" SELECT b.pk_id,LEFT(b.manageTitle,13) manageTitle,b.content,b.img,case  when b.img is NULL then '\\upload\\demot.jpg' else '");
 		sql.append(path);
 		sql.append("' + b.img  END as path  FROM bookInfo b JOIN booktype bt ON b.type=bt.pk_id WHERE 1=1 ");
 		if(bookx!=null&&!"".equals(bookx)){

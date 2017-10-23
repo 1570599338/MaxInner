@@ -55,9 +55,19 @@ public class User implements Serializable {
 	private String spendDay;
 	/**剩余假期天数**/
 	private String restDay;
+	/***月份***/
+	private String month;
 
 	
 	
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+
 	public String getBaseDay() {
 		return baseDay;
 	}

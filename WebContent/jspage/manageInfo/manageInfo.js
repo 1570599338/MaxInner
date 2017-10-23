@@ -13,6 +13,7 @@ $(function(){
 function getdata(){
 	var ctxPath = $("#ctxPath").val();
 	var title  = $('#log_title').val();
+	var bookTypex = $("#bookType").combobox("getValue");
 	 // 通过路径查询项目的数据列表
 	$('#dg').datagrid({
 						rownumbers:true,
@@ -27,7 +28,8 @@ function getdata(){
 						url : ctxPath + encodeURI(encodeURI('/manage/selectManageList')),
 						idField : 'pk_id',
 						queryParams:{
-							title:title
+							title:title,
+							bookTypex:bookTypex
 						},
 						columns : [ 
 						            [ 
@@ -58,6 +60,7 @@ function editActivityDiv(){
 		return;
 	}else{
 		$("#pk_id").val(menu.pk_id);
+		$("#bookTypeID").val(menu.type);
 		$("#dataForm").attr("action",ctxPath + "/manage/editManage");
 		$("#dataForm").submit();
 	}
@@ -85,7 +88,7 @@ function deleteActivity(){
 		sayInfo("请选择要编辑的活动。");
 		return;
 	}else{
-		$.messager.confirm("提示","删除操作不可恢复，您确定要删除该活动展示吗？",function(data){
+		$.messager.confirm("提示","删除操作不可恢复，您确定要删除该本图书吗？",function(data){
 			if(data){
 			$("#pk_id").val(menu.pk_id);
 			$("#dataForm").attr("action",ctxPath + "/manage/deleteManage");
