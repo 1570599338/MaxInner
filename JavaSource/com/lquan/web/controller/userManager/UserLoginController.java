@@ -66,7 +66,7 @@ public class UserLoginController {
 		response.setContentType("text/xml; charset=UTF-8");
 		String loginName = request.getParameter("uname");
 		String password = request.getParameter("upass");
-		/*Boolean loginFlage =false;
+		Boolean loginFlage =false;
 		User user =null;
 		try {
 			user = this.lDAPDAO.getDirContext(loginName, password);
@@ -85,10 +85,32 @@ public class UserLoginController {
 			
 			redirectAttributes.addFlashAttribute("message", "欢迎<font color=blue>"+loginName+"</font>登陆内部信息网！");
 			return new ModelAndView("redirect:/user/main");
+		}else{
+			 user = loginService.selectUser(loginName);
+			// 记录登陆时间、ip、mac地址
+			String ip = Utils.getIpAddr(request);
+			System.out.println("账户："+loginName+ " 密码："+password + "  IP:"+ip);
+			
+			if(user != null && null != user.getLog_name()&& !"".equals(user.getLog_name())){
+				password = Utils.encryptPassword(password);
+				if(password.equals(user.getPassword())){
+					request.getSession().setAttribute(Constants.SESSION_USER,user);
+					redirectAttributes.addFlashAttribute("message", "欢迎<font color=blue>"+user.getUser_name()+"</font>登陆内部信息网！");
+					return new ModelAndView("redirect:/user/main");
+				}else{
+					redirectAttributes.addFlashAttribute("message", "对不起,您的密码有误！");
+					return new ModelAndView("redirect:/user/toLogin");
+				}
+				
+				
+			}else{
+				redirectAttributes.addFlashAttribute("message", "对不起,无此账户！");
+			}
 		}
+		
 		String ip = Utils.getIpAddr(request);
-		System.out.println("*****"+ip+"*******");*/
-		User user = loginService.selectUser(loginName);
+		System.out.println("*****"+ip+"*******");
+		/*User user = loginService.selectUser(loginName);
 		// 记录登陆时间、ip、mac地址
 		String ip = Utils.getIpAddr(request);
 		System.out.println("账户："+loginName+ " 密码："+password + "  IP:"+ip);
@@ -107,7 +129,7 @@ public class UserLoginController {
 			
 		}else{
 			redirectAttributes.addFlashAttribute("message", "对不起,无此账户！");
-		}
+		}*/
 		return new ModelAndView("redirect:/user/toLogin");
 	}
 	
@@ -132,7 +154,6 @@ public class UserLoginController {
 		else
 			type="BJ";
 		request.getSession().setAttribute(Constants.SESSION_TYPER,type);
-		
 		
 		return "main/main";
 	}
