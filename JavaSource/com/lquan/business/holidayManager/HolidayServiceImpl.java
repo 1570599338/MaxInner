@@ -133,13 +133,15 @@ public class HolidayServiceImpl implements IHolidayService {
 	 * @throws Exception
 	 */
 	@Override
-	public int importData(String tempTable, VacationExcelWeb dealerWb) throws Exception {
+	public int importData(String tempTable, VacationExcelWeb dealerWb,String month) throws Exception {
 		StringBuffer sb = new StringBuffer();
 		int result = 0;
 		try {
+			
+			commonDao.update(" delete from vacation ");
 			// 插入数据到条件属性表
-			sb.append(" INSERT INTO vacation( pk_id,userName,baseDay,spendDay,restDay,createBy,createAt) ");
-			sb.append(" select ").append(VacationExcelWeb.columnsCode);
+			sb.append(" INSERT INTO vacation(month, pk_id,userName,baseDay,spendDay,restDay,createBy,createAt) ");
+			sb.append(" select ").append(month+" as month,").append(VacationExcelWeb.columnsCode);
 			sb.append(" FROM ").append(tempTable);
 			result = commonDao.update(sb.toString());
 			log.info("成功导入数据到正式表！上传流程结束");
@@ -169,7 +171,7 @@ public class HolidayServiceImpl implements IHolidayService {
 	@Override
 	public PaginationSupport getRuleList(String page, String rows, String sort,String order, String username, String type) throws Exception {
 		StringBuffer sql = new StringBuffer();
-		sql.append("select pk_id,userName,baseDay,spendDay,restDay,createBy,createAt FROM vacation ");
+		sql.append("select pk_id,userName,baseDay,spendDay,restDay,createBy,createAt,month FROM vacation ");
 		sql.append(" where 1=1 ");
 		if(!"".equals(username)&& username!=null){
 			sql.append(" AND userName like '%");

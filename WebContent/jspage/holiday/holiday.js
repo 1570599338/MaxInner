@@ -47,6 +47,11 @@ function getdata(){
 					width : 80,
 					sortable : true
 				},{
+					field : 'month',
+					title : '截止月份',
+					width : 50,
+					sortable : true
+				},{
 					field : 'createBy',
 					title : '执行',
 					width : 50,

@@ -40,7 +40,7 @@ public interface IHolidayService {
 	 * @return
 	 * @throws Exception
 	 */
-	public int importData(String tempTable, VacationExcelWeb dealerWb)throws Exception;
+	public int importData(String tempTable, VacationExcelWeb dealerWb,String month)throws Exception;
 	
 
 }

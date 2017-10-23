@@ -107,7 +107,7 @@ public class HolidayController {
 	@RequestMapping(value = "uploadVacation")
 	public String uploadStaff(HttpServletRequest request,HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		// 月份
-		String mouth = FormUtil.getStringFiledValue(request, "mouth");
+		String month = FormUtil.getStringFiledValue(request, "mouth");
 		// 上传文件至临时目录，存放临时文件
 		String tmpPath = WebUtils.getModuleProperty("upload.vacation.tempExcel");
 		response.setContentType("text/json; charset=utf-8"); // 注意设置为json
@@ -140,7 +140,7 @@ public class HolidayController {
 				workbook = null;
 			} else {
 				// 插入数据,数据没有问题，将数据插入到正式表中
-				int result = holidayService.importData(tempTable, dealerWb);
+				int result = holidayService.importData(tempTable, dealerWb,month);
 				request.setAttribute("message", "成功导入 " + result + " 条数据！");
 				return "holiday/holiday";
 			}

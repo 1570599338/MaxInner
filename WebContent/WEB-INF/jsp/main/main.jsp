@@ -359,9 +359,9 @@ function exit(){
 			<div id="mm3" class="menu-content" style="background:#f0f0f0;padding:10px;text-align:left">
 				<!-- <img src="http://www.jeasyui.com/images/logo1.png" style="width:150px;height:50px"> -->
 				<p style="font-size:14px;color:#444;">
-					用户名：admin<br/>
-					角&nbsp;&nbsp;&nbsp;&nbsp;色：超级管理员<br/>
-					部&nbsp;&nbsp;&nbsp;&nbsp;门：IT总部<br/>
+					用户名：${user.log_name}<br/>
+					 角&nbsp;&nbsp;&nbsp;&nbsp;色：卓思员工<br/>
+					<!--部&nbsp;&nbsp;&nbsp;&nbsp;门：IT总部<br/> -->
 				</p>
 				<div onclick="exit()">退出登录</div>
 			</div>
@@ -375,8 +375,8 @@ function exit(){
 					 <a href="javascript:void(0);" src="${ctxPath}/user/toDatagrid" class="cs-navi-tab" iconCls="icon-nav">角色权限</a></p>
 					 <a href="javascript:void(0);" src="${ctxPath}/user/toDatagrid" class="cs-navi-tab" iconCls="icon-nav">操作功能</a></p>
 				</div> --%>
-			<%-- 	<c:choose>
-					<c:when test="${user.log_name=='admin'} }"> --%>
+				<c:choose>
+					<c:when test="${user.log_name eq 'admin'}"> 
 				
 				<div title="首页" iconCls="icon-project">
 				   <a href="javascript:void(0);" src="${ctxPath}/active/toPage" class="cs-navi-tab">活动展示</a></p>
@@ -414,17 +414,12 @@ function exit(){
 					<a href="javascript:void(0);" src="${ctxPath}/meet/topage" class="cs-navi-tab">会议室预定</a></p>
 				</div>
 				 <div title="其他" iconCls="icon-statistic">
+				 	<a href="javascript:void(0);" src="${ctxPath}/manage/toBookTypepage" class="cs-navi-tab">图书类型</a></p>
 					<a href="javascript:void(0);" src="${ctxPath}/manage/topage" class="cs-navi-tab">图书模块</a></p>
 					<a href="javascript:void(0);" src="${ctxPath}/holiday/topage" class="cs-navi-tab">年假查询</a></p>
 
 				</div>
-				<%-- <div title="年假查询" iconCls="icon-statistic">
-					<a href="javascript:void(0);" src="${ctxPath}/holiday/topage" class="cs-navi-tab">经营管理信息</a></p>
-					</div>  
-					<div title="图书管理" iconCls="icon-statistic">
-						
-					</div> --%>
-					<%-- </c:when> 
+					 </c:when> 
 					<c:otherwise>  
 						<div title="会议室预定" iconCls="icon-audit">
 							<a href="javascript:void(0);" src="${ctxPath}/meet/topage" class="cs-navi-tab">会议室预定</a></p>
@@ -432,7 +427,7 @@ function exit(){
 					
    					</c:otherwise>
 					
-				</c:choose> --%>
+				</c:choose>
 		</div>
 	</div>
 	<div id="mainPanle" region="center" border="true" border="false">
@@ -441,32 +436,38 @@ function exit(){
                 <div title="首页" iconCls="icon-home">
 				<div class="cs-home-remark">
 					<br/><br/>
-				 	<h1>年假情况</h1> <br/>
-					用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户：${user.user_name}
-					  <br/><br/>
-					请假天数：${user.spendDay} 天
-					<br/><br/>
-					剩余年假：${user.restDay} 天
+					<c:choose>
+						<c:when test="${user.log_name eq 'admin'}"> 
+						
+					 <h1>UI Demo</h1> <br/><br/>
+						作者：刘劝 <br/> <br/>
+						版本：v1.0 <br/> <br/>
+						
+						欢迎进入卓思内部信息系统后台。<br/> <br/>
+					 </c:when> 
+					<c:otherwise> 
+						<h1>截止今年${user.month}月底年假情况</h1> <br/>
+						用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户：${user.user_name}
+						  <br/><br/>
+						请假天数：${user.spendDay} 天
+						<br/><br/>
+						剩余年假：${user.restDay} 天
+						
+					 <br/><br/> <br/><br/> <br/><br/> 
+					 <h1>UI Demo</h1> <br/><br/>
+						作者：刘劝 <br/> <br/>
+						版本：v1.0 <br/> <br/>
+						
+						欢迎进入卓思内部信息系统后台。<br/> <br/>
+					</c:otherwise>
 					
-				 <br/><br/> <br/><br/> <br/><br/> <br/><br/>
-				
-				
-				
-					<h1>UI Demo</h1> <br/><br/>
-					作者：刘劝 <br/> <br/>
-					版本：v1.0 <br/> <br/>
-					
-					欢迎进入卓思内部信息系统后台。<br/> <br/>
-					
+				</c:choose>	
 					
 				</div>
 				</div>
         </div>
 	</div>
 	
-	<!--
-	<div data-options="region:'east',split:true,collapsed:true,title:'切换项目'" style="width:100px;padding:10px;">项目列表</div>
-	-->
 
 	<div region="south" border="false" id="south"><div class="cs-north-bg"><center><font color="white">卓思数据咨询股份有限公司</font></center></div></div>
 	

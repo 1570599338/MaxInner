@@ -125,7 +125,7 @@ public class LoginServiceImpl implements ILoginService {
 	@Override
 	public User getUser(User user) throws Exception {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT pk_id,userName,baseDay,spendDay,restDay,createAt from vacation  WHERE 1=1");
+		sql.append("SELECT pk_id,userName,baseDay,spendDay,restDay,createAt,month from vacation  WHERE 1=1");
 		
 		User u = new User();
 		if(user.getUser_name()!=null && !"".equals(user.getUser_name())){
@@ -140,6 +140,7 @@ public class LoginServiceImpl implements ILoginService {
 					u.setBaseDay(map.get("baseDay")==null?"0":String.valueOf(map.get("baseDay"))); 
 					u.setSpendDay(map.get("spendDay")==null?"0":String.valueOf(map.get("spendDay")));
 					u.setRestDay(map.get("restDay")==null?"0":String.valueOf(map.get("restDay")));
+					u.setMonth(map.get("month")==null?"0":String.valueOf(map.get("month")));
 					
 				}	
 			}

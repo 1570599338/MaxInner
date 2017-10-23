@@ -41,10 +41,10 @@
 
 		<div style="margin-bottom: 5px;margin-top: 5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="false" onclick="updateAdDiv()">导入年假</a>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="delNoticeDiv('${ctxPath }')">删除规章制度</a>&nbsp;&nbsp;
-			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="false" onclick="addFlageNew('${ctxPath }')">设置new标识</a>&nbsp;&nbsp;
+<%-- 			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="delNoticeDiv('${ctxPath }')">删除规章制度</a>&nbsp;&nbsp;
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="false" onclick="addFlageNew('${ctxPath }')">设置new标识</a>&nbsp;&nbsp; 
 			&nbsp;&nbsp;&nbsp;
-			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="delFlageNew('${ctxPath }')">删除new标识</a>&nbsp;&nbsp;
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="false" onclick="delFlageNew('${ctxPath }')">删除new标识</a>&nbsp;&nbsp;--%>
 			&nbsp;&nbsp;&nbsp;
 		</div>
 	</div>

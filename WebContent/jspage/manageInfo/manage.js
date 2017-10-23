@@ -4,6 +4,10 @@ function addManageInfoDiv(){
 	var pk_id = $('#pk_id').val();
 	var ctxPath = $("#ctxPath").val();
 	var title = $('#title').val();
+	//var bookType = $('#bookType').val();
+	//var bookType = $("#bookType").combobox("getValue");
+	//$("#bookTypeID").combobox('select', bookType);
+	//$("#bookTypeID").val(bookType);
 	var markupStr = $('#summernote').summernote('code');
 	if(!title){
 		alert("请填写活动标题！");
