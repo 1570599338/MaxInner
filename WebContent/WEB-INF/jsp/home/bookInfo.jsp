@@ -17,8 +17,38 @@
 <link rel="stylesheet" href="${ctxPath}/css/front/css/layout.css" type="text/css" />
 <link rel="stylesheet" href="${ctxPath}/css/front/css/detail-book.css" type="text/css"/>
 <link rel="stylesheet" href="${ctxPath}/css/front/css/detail-p.css" type="text/css"/>
+<style type="text/css">
+		.rTop{
+			width:100px; 
+			height:25px;
+			text-align:center; font-size:small;
+			line-height:25px; border:1px solid #999;
+			position:fixed; right:0; bottom:0px;
+			border-bottom-color:#333; 
+			border-right-color:#333; margin:50px;
+			cursor:pointer; display:none
+		}	
+</style>
+<script type="text/javascript">
+
+	<!--拖动滚动条或滚动鼠标轮-->
+	window.onscroll=function(){
+		if(document.body.scrollTop||document.documentElement.scrollTop>0){
+		document.getElementById('rTop').style.display="block"
+		}else{
+			document.getElementById('rTop').style.display="none";
+		}
+	}
+	/* 点击“回到顶部”按钮 */
+	function toTop(){
+		window.scrollTo('0','0');
+		document.getElementById('rTop').style.display="none"
+	}
+
+</script>
 </head>
 <body id="top">
+<div class="rTop" id="rTop" onClick="toTop()"><font color="#000">返回顶部</font></div>
 <div class="wrapper col1">
   <div id="header" class="clear">
     <div class="fl_left">

@@ -2,13 +2,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
 <html>
 <head>
-<title>图书</title>
-<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-<%@include file="/WEB-INF/jsp/inc/inc.jsp"%>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="imagetoolbar" content="no" />
-<link rel="stylesheet" href="${ctxPath}/css/front/css/layout.css" type="text/css" />
-<link rel="stylesheet" href="${ctxPath}/css/front/css/book.css" type="text/css" />
+	<title>图书</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+	<%@include file="/WEB-INF/jsp/inc/inc.jsp"%>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="imagetoolbar" content="no" />
+	<link rel="stylesheet" href="${ctxPath}/css/front/css/layout.css" type="text/css" />
+	<link rel="stylesheet" href="${ctxPath}/css/front/css/book.css" type="text/css" />
 </head>
 <style type="text/css">
 	#copyright_rule{
@@ -23,11 +23,60 @@
 tr{
 	font-family:"微软雅黑",Georgia, "Times New Roman", Times, serif;
 }
-	
+
+	.rTop{
+		width:100px; height:25px;
+		/* background:#A6A6A7; */
+		text-align:center; font-size:small;
+		line-height:25px; border:1px solid #999;
+		position:fixed; right:0; bottom:0px;
+		border-bottom-color:#333; 
+		border-right-color:#333; margin:50px;
+		cursor:pointer; display:none
+	}	
 </style>
+<script type="text/javascript">
+$(function(){
+	var ctxPath = $("#ctxPath").val();
+	$('#bookType').combobox({ 
+		url:ctxPath + '/manage/queryBookTypeList',
+	    editable:true, //不可编辑状态
+	    cache: false,
+	    panelHeight: 'auto',//自动高度适合
+	    valueField:'pk_id',  
+	    textField:'name'
+	});
+	$("#bookType").combobox('select', '${bookType}');
+	if('${companyid}'==''){
+		$("#department").combobox('select', "--请选择--");
+	}else{
+		$("#department").combobox('select', '${departMentCode}');
+	}
+	
+	$("#bookType").combobox('select', '${bookTypex}');
+	/* $("#useName").val('${useName}');
+	$("#telphone").val('${telphone}'); */
+	
+});
+
+
+<!--拖动滚动条或滚动鼠标轮-->
+window.onscroll=function(){
+	if(document.body.scrollTop||document.documentElement.scrollTop>0){
+	document.getElementById('rTop').style.display="block"
+	}else{
+		document.getElementById('rTop').style.display="none";
+	}
+}
+/* 点击“回到顶部”按钮 */
+function toTop(){
+window.scrollTo('0','0');
+document.getElementById('rTop').style.display="none"
+}
+</script>
 
 <body id="top">
-
+<div class="rTop" id="rTop" onClick="toTop()">返回顶部</div>
 <input type="hidden" id="ctxPath" name="ctxPath" value="${ctxPath}" />
 <div class="wrapper col1">
    <div id="header" class="clear">
@@ -64,13 +113,11 @@ tr{
     </div>
   </div>
 </div>
+
 <!-- ####################################################################################################### -->
 <form id="upfileForm" action="" method="post" >
-	<input type="hidden"  id="companyx" name="companyx"  vaule="${companyid}"/>
-	<input type="hidden"  id="departmentx" name="departmentx" vaule="${departMentCode}"/>
-	<input type="hidden"  id="genderx" name="genderx"/>
-	<input type="hidden"  id="useNamex" name="useNamex"/>
-	<input type="hidden"  id="telphonex" name="telphonex"/>
+	<input type="hidden"  id="bookx" name="bookx"  vaule="${bookx}"/>
+	<input type="hidden"  id="bookTypex" name="bookTypex" vaule="${bookTypex}"/>
 	<input type="hidden"  id="pk_id" name="pk_id"/>
 	
 </form>
@@ -79,8 +126,9 @@ tr{
     <table>
     	<tr>
     		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图&nbsp;&nbsp;&nbsp;书:&nbsp;&nbsp;&nbsp;</td>
-    		<td><input class="input_text" type="text" style="width:116px;height:24px" id="book" name="book" /></td>
+    		<td><input class="input_text" type="text" style="width:116px;height:24px" id="book" name="book" value="${bookx }"/></td>
     		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    		<td>类型:</td><td> <input type="text" id="bookType" name="bookType" panelHeight="auto" class="easyui-combobox" value='${bookTypex}' /> 
     		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
     		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
     		<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -91,6 +139,8 @@ tr{
   </div>
 </div>  	
 <!-- ####################################################################################################### -->
+
+
 <div class="wrapper col3">
   <div id="container" class="clear">
     <!-- ####################################################################################################### -->
@@ -98,7 +148,7 @@ tr{
       <ul>
 	      <c:forEach items="${list}" var="s" varStatus="ss">
 	        <li>
-	            <img src="${ctxPath}${s.path}" alt="" />
+	            <img src="${ctxPath}${s.path}" alt=""  onclick="seeBookinfo(${s.pk_id})"/>
 	            <p onclick="seeBookinfo(${s.pk_id})">${s.manageTitle}</p>
 	        </li>
 	      </c:forEach>
@@ -108,6 +158,8 @@ tr{
     <!-- ####################################################################################################### -->
   </div>
 </div>
+
+
 <!-- ####################################################################################################### -->
 
 <!-- ####################################################################################################### -->

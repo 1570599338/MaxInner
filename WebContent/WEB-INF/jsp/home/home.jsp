@@ -28,6 +28,18 @@
 	text-align:center;
 	}
 	.shadow img{display:none;}
+	
+	.rTop{
+		width:100px; height:25px;
+		/* background:#2D8462; */
+		text-align:center; font-size:small;
+		line-height:25px; border:1px solid #999;
+		position:fixed; right:0; bottom:0px;
+		border-bottom-color:#333; 
+		border-right-color:#333; margin:50px;
+		cursor:pointer; display:none
+	}	
+	
 </style>
 <script type="text/javascript">
 var flag=false;
@@ -64,9 +76,24 @@ function DrawImage(ImgD,w,h){
 		}
 	}
 }
+
+	<!--拖动滚动条或滚动鼠标轮-->
+	window.onscroll=function(){
+		if(document.body.scrollTop||document.documentElement.scrollTop>0){
+		document.getElementById('rTop').style.display="block"
+		}else{
+			document.getElementById('rTop').style.display="none";
+		}
+	}
+	/* 点击“回到顶部”按钮 */
+	function toTop(){
+		window.scrollTo('0','0');
+		document.getElementById('rTop').style.display="none"
+	}
 </script>
 </head>
 <body id="top">
+<div class="rTop" id="rTop" onClick="toTop()">返回顶部</div>
 <div class="wrapper col1">
   <div id="header" class="clear">
     <div class="fl_left">

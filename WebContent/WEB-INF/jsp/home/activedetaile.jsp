@@ -109,10 +109,10 @@ function DrawImage(ImgD,w,h){
                		</div>
  				</c:forEach>
             </div>
-            <div class="fy">
-            	<!-- <div class="fy_bottom"><span>上一篇：</span><a href="#">未定</a></div>
-                <div class="fy_bottom"><span>下一篇：</span><a href="#">IT制度</a></div> -->
-            </div>
+           <!-- <div class="fy">
+            	 <div class="fy_bottom"><span>上一篇：</span><a href="#">未定</a></div>
+                <div class="fy_bottom"><span>下一篇：</span><a href="#">IT制度</a></div> 
+            </div>-->
       	</div>
       <div class="classify">
             <div class="cf_title">
